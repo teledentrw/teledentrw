@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dentist Dashboard</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:#f5f9fc;
+}
+
+.dashboard{
+display:flex;
+min-height:100vh;
+}
+
+.sidebar{
+width:260px;
+background:white;
+border-right:1px solid #ddd;
+padding:20px;
+}
+
+.sidebar h2{
+color:#0a4d8c;
+margin-bottom:20px;
+}
+
+.sidebar a{
+display:block;
+padding:12px;
+margin-bottom:10px;
+background:#f5f5f5;
+border-radius:8px;
+text-decoration:none;
+color:#333;
+}
+
+.sidebar a:hover{
+background:#dff3eb;
+}
+
+.content{
+flex:1;
+padding:25px;
+}
+
+.topbar{
+background:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.cards{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:20px;
+}
+
+.summary-card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.case-card{
+background:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:15px;
+box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+button{
+padding:10px 15px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+margin-top:8px;
+margin-right:5px;
+}
+
+.primary{
+background:#0a4d8c;
+color:white;
+}
+
+.success{
+background:#25c26e;
+color:white;
+}
+
+.gray{
+background:#999;
+color:white;
+}
+
+.green{
+color:green;
+font-weight:bold;
+}
+
+.red{
+color:red;
+font-weight:bold;
+}
+
+@media(max-width:900px){
+
+.dashboard{
+flex-direction:column;
+}
+
+.sidebar{
+width:100%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<div class="sidebar">
+
+<h2>
+🦷 TeleDent
+</h2>
+
+<a href="#">
+📊 Dashboard
+</a>
+
+<a href="#">
+🦷 All Consultations
+</a>
+
+<a href="#">
+📅 Appointments
+</a>
+
+<a href="#">
+💬 Messages
+</a>
+
+<a href="dentist-profile.html">
+👤 Profile
+</a>
+
+<a href="#" onclick="logout()">
+🚪 Logout
+</a>
+
+</div>
+
+<div class="content">
+
+<div class="topbar">
+
+<h1 id="welcome"></h1>
+
+<p>
+Manage consultations, diagnoses,
+appointments and patient care.
+</p>
+
+</div>
+
+<div class="cards">
+
+<div class="summary-card">
+
+<h3>
+🦷 Total Cases
+</h3>
+
+<p id="totalCases">
+0
+</p>
+
+</div>
+
+<div class="summary-card">
+
+<h3>
+⏳ Pending
+</h3>
+
+<p id="pendingCases">
+0
+</p>
+
+</div>
+
+<div class="summary-card">
+
+<h3>
+🔍 In Review
+</h3>
+
+<p id="reviewCases">
+0
+</p>
+
+</div>
+
+<div class="summary-card">
+
+<h3>
+✅ Completed
+</h3>
+
+<p id="completedCases">
+0
+</p>
+
+</div>
+
+</div>
+
+<h2>
+Patient Consultations
+</h2>
+
+<div id="cases"></div>
+
+</div>
+
+</div>
+
+<script>
+
+const user =
+JSON.parse(
+localStorage.getItem("user")
+);
+
+if(
+!user ||
+user.role !== "dentist"
+){
+
+location =
+"login.html";
+
+}
+
+const API =
+"https://teledentalrwanda.sangoblaise51.workers.dev";
+
+document.getElementById(
+"welcome"
+).innerHTML =
+"Welcome, Dr. " +
+user.fullname;
+
+async function loadCases(){
+
+const res =
+await fetch(
+API + "/consultations"
+);
+
+const data =
+await res.json();
+
+document.getElementById(
+"totalCases"
+).innerHTML =
+data.length;
+
+document.getElementById(
+"pendingCases"
+).innerHTML =
+data.filter(
+x=>x.status==="Pending"
+).length;
+
+document.getElementById(
+"reviewCases"
+).innerHTML =
+data.filter(
+x=>x.status==="In Review"
+).length;
+
+document.getElementById(
+"completedCases"
+).innerHTML =
+data.filter(
+x=>x.status==="Completed"
+).length;
+
+const cases =
+document.getElementById(
+"cases"
+);
+
+cases.innerHTML = "";
+
+data.forEach(item=>{
+
+cases.innerHTML += `
+
+<div class="case-card">
+
+<h3>
+🦷 Consultation #${item.id}
+</h3>
+
+<p>
+<b>Symptoms:</b>
+${item.symptoms}
+</p>
+
+<p>
+<b>Status:</b>
+${item.status}
+</p>
+
+<p>
+<b>Payment:</b>
+
+<span class="${
+item.paid == 1
+? "green"
+: "red"
+}">
+
+${item.paid == 1
+? "✅ Paid"
+: "❌ Payment Required"}
+
+</span>
+
+</p>
+
+<p>
+<b>Photo:</b>
+
+${item.photo_url
+? "✅ Uploaded"
+: "❌ No Photo"}
+
+</p>
+
+${
+item.paid == 1
+
+?
+
+`
+
+<a href="consultation-details.html?id=${item.id}">
+
+<button class="primary">
+
+View Case
+
+</button>
+
+</a>
+
+`
+
+:
+
+`
+
+<button class="gray" disabled>
+
+Payment Required
+
+</button>
+
+`
+
+}
+
+<a href="messages.html?consultation=${item.id}">
+
+<button class="success">
+
+Reply
+
+</button>
+
+</a>
+
+</div>
+
+`;
+
+});
+
+}
+
+function logout(){
+
+localStorage.clear();
+
+location =
+"login.html";
+
+}
+
+loadCases();
+
+</script>
+
+</body>
+
+</html>

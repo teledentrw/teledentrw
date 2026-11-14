@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>Consultation Review</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:#f5f9fc;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+padding:25px;
+}
+
+.header{
+background:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+box-shadow:0 2px 10px
+rgba(0,0,0,.05);
+}
+
+.main{
+display:grid;
+grid-template-columns:
+1fr 400px;
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 10px
+rgba(0,0,0,.05);
+margin-bottom:20px;
+}
+
+img{
+width:100%;
+border-radius:12px;
+margin-top:15px;
+}
+
+textarea{
+width:100%;
+height:120px;
+padding:12px;
+border:1px solid #ddd;
+border-radius:10px;
+margin-top:10px;
+margin-bottom:15px;
+}
+
+input,
+select{
+width:100%;
+padding:12px;
+border:1px solid #ddd;
+border-radius:10px;
+margin-top:10px;
+margin-bottom:15px;
+}
+
+button{
+padding:12px 18px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+margin-right:8px;
+}
+
+.primary{
+background:#0a4d8c;
+color:white;
+}
+
+.success{
+background:#25c26e;
+color:white;
+}
+
+.payment{
+font-size:18px;
+font-weight:bold;
+}
+
+.green{
+color:green;
+}
+
+.red{
+color:red;
+}
+
+@media(max-width:900px){
+
+.main{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>
+🦷 Consultation Review
+</h1>
+
+<p>
+Review patient consultation,
+upload findings and schedule care.
+</p>
+
+</div>
+
+<div id="details"></div>
+
+</div>
+
+<script>
+
+const API =
+"https://teledentalrwanda.sangoblaise51.workers.dev";
+
+const params =
+new URLSearchParams(
+location.search
+);
+
+const consultationId =
+params.get("id");
+
+window.consultation = null;
+
+async function loadDetails(){
+
+const res =
+await fetch(
+API + "/consultations"
+);
+
+const data =
+await res.json();
+
+window.consultation =
+data.find(
+x => x.id == consultationId
+);
+
+if(!consultation){
+
+document.getElementById(
+"details"
+).innerHTML =
+"<h2>Consultation Not Found</h2>";
+
+return;
+
+}
+
+document.getElementById(
+"details"
+).innerHTML = `
+
+<div class="main">
+
+<div>
+
+<div class="card">
+
+<h2>
+Case #${consultation.id}
+</h2>
+
+<br>
+
+<p>
+
+<b>Symptoms:</b>
+
+<br><br>
+
+${consultation.symptoms}
+
+</p>
+
+<br>
+
+<p class="payment">
+
+<b>Payment:</b>
+
+<span class="${
+consultation.paid == 1
+? "green"
+: "red"
+}">
+
+${consultation.paid == 1
+? "✅ Paid"
+: "❌ Payment Required"}
+
+</span>
+
+</p>
+
+<br>
+
+<p>
+
+<b>Status:</b>
+
+${consultation.status}
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+📷 Uploaded Dental Image
+</h3>
+
+${
+consultation.photo_url
+
+?
+
+`
+
+<img
+src="${consultation.photo_url}">
+
+`
+
+:
+
+`
+
+<p>
+No image uploaded.
+</p>
+
+`
+
+}
+
+</div>
+
+<div class="card">
+
+<h3>
+🩺 Clinical Assessment
+</h3>
+
+<textarea
+id="diagnosis"
+placeholder="Diagnosis">
+
+${consultation.diagnosis || ""}
+
+</textarea>
+
+<textarea
+id="notes"
+placeholder="Clinical Notes">
+
+${consultation.dentist_notes || ""}
+
+</textarea>
+
+<select
+id="status">
+
+<option value="Pending">
+Pending
+</option>
+
+<option value="In Review">
+In Review
+</option>
+
+<option value="Treatment Recommended">
+Treatment Recommended
+</option>
+
+<option value="Completed">
+Completed
+</option>
+
+</select>
+
+<button
+class="primary"
+onclick="saveAssessment()">
+
+Save Assessment
+
+</button>
+
+</div>
+
+</div>
+
+<div>
+
+<div class="card">
+
+<h3>
+📅 Schedule Appointment
+</h3>
+
+<input
+id="appointmentDate"
+type="datetime-local">
+
+<input
+id="clinicName"
+placeholder="Clinic Name">
+
+<input
+id="clinicAddress"
+placeholder="Clinic Address">
+
+<button
+class="success"
+onclick="scheduleAppointment()">
+
+Schedule Appointment
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h3>
+💬 Communication
+</h3>
+
+<a href="
+messages.html?consultation=
+${consultation.id}
+">
+
+<button
+class="primary">
+
+Open Chat
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+async function saveAssessment(){
+
+const res =
+await fetch(
+API +
+"/update-consultation",
+{
+method:"POST",
+headers:{
+"Content-Type":
+"application/json"
+},
+body:JSON.stringify({
+id:consultationId,
+diagnosis:
+document.getElementById(
+"diagnosis"
+).value,
+dentist_notes:
+document.getElementById(
+"notes"
+).value,
+status:
+document.getElementById(
+"status"
+).value
+})
+}
+);
+
+const data =
+await res.json();
+
+if(data.success){
+
+alert(
+"Assessment Saved"
+);
+
+}
+
+}
+
+async function scheduleAppointment(){
+
+const user =
+JSON.parse(
+localStorage.getItem(
+"user"
+)
+);
+
+const res =
+await fetch(
+API +
+"/create-appointment",
+{
+method:"POST",
+headers:{
+"Content-Type":
+"application/json"
+},
+body:JSON.stringify({
+consultation_id:
+consultationId,
+
+patient_id:
+consultation.patient_id,
+
+dentist_id:
+user.id,
+
+appointment_date:
+document.getElementById(
+"appointmentDate"
+).value,
+
+clinic_name:
+document.getElementById(
+"clinicName"
+).value,
+
+clinic_address:
+document.getElementById(
+"clinicAddress"
+).value
+})
+}
+);
+
+const data =
+await res.json();
+
+if(data.success){
+
+alert(
+"Appointment Scheduled"
+);
+
+}
+
+}
+
+loadDetails();
+
+</script>
+
+</body>
+
+</html>

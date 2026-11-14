@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>Payment Center</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:#f5f9fc;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:25px;
+}
+
+.header{
+background:white;
+padding:25px;
+border-radius:12px;
+margin-bottom:20px;
+box-shadow:
+0 2px 10px rgba(0,0,0,.05);
+}
+
+.grid{
+display:grid;
+grid-template-columns:
+400px 1fr;
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:
+0 2px 10px rgba(0,0,0,.05);
+}
+
+.provider{
+display:flex;
+gap:10px;
+margin-bottom:15px;
+}
+
+.provider button{
+flex:1;
+padding:15px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.active{
+background:#0a4d8c;
+color:white;
+}
+
+input,
+select{
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:10px;
+margin-bottom:15px;
+}
+
+.pay-btn{
+width:100%;
+padding:15px;
+background:#25c26e;
+border:none;
+border-radius:10px;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+.payment-card{
+padding:15px;
+border-bottom:1px solid #eee;
+}
+
+.badge{
+display:inline-block;
+padding:6px 12px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+margin-top:8px;
+}
+
+.pending{
+background:#fff4de;
+color:#ff9800;
+}
+
+.paid{
+background:#eafaf1;
+color:#25c26e;
+}
+
+.failed{
+background:#ffe8e8;
+color:#f44336;
+}
+
+.info{
+margin-top:10px;
+line-height:1.8;
+}
+
+@media(max-width:900px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>
+💳 Payment Center
+</h1>
+
+<p>
+
+Pay consultation fees and
+track previous payment requests.
+
+</p>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<h2>
+New Payment
+</h2>
+
+<br>
+
+<div class="provider">
+
+<button
+id="mtnBtn"
+class="active"
+onclick="chooseProvider('MTN')">
+
+MTN MoMo
+
+</button>
+
+<button
+id="airtelBtn"
+onclick="chooseProvider('Airtel')">
+
+Airtel Money
+
+</button>
+
+</div>
+
+<input
+id="phone"
+placeholder="Phone Number">
+
+<input
+id="amount"
+type="number"
+value="2000">
+
+<button
+class="pay-btn"
+onclick="pay()">
+
+Make Payment
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>
+Payment History
+</h2>
+
+<br>
+
+<div id="payments">
+
+Loading...
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const API =
+"https://teledentalrwanda.sangoblaise51.workers.dev";
+
+const user =
+JSON.parse(
+localStorage.getItem("user")
+);
+
+if(
+!user ||
+user.role !== "patient"
+){
+
+location =
+"login.html";
+
+}
+
+const consultationId =
+new URLSearchParams(
+location.search
+).get("consultation") || 1;
+
+let selectedProvider =
+"MTN";
+
+function chooseProvider(provider){
+
+selectedProvider =
+provider;
+
+mtnBtn.classList.remove(
+"active"
+);
+
+airtelBtn.classList.remove(
+"active"
+);
+
+if(provider === "MTN"){
+
+mtnBtn.classList.add(
+"active"
+);
+
+}else{
+
+airtelBtn.classList.add(
+"active"
+);
+
+}
+
+}
+
+async function pay(){
+
+const res =
+await fetch(
+API +
+"/create-payment",
+{
+method:"POST",
+headers:{
+"Content-Type":
+"application/json"
+},
+body:JSON.stringify({
+
+patient_id:
+user.id,
+
+consultation_id:
+consultationId,
+
+amount:
+amount.value,
+
+phone_number:
+phone.value,
+
+provider:
+selectedProvider
+
+})
+}
+);
+
+const data =
+await res.json();
+
+if(data.success){
+
+alert(
+"Payment Request Created"
+);
+
+loadPayments();
+
+}else{
+
+alert(
+"Payment Failed"
+);
+
+}
+
+}
+
+async function loadPayments(){
+
+const res =
+await fetch(
+API +
+"/payments"
+);
+
+const data =
+await res.json();
+
+const myPayments =
+data.filter(
+x => x.patient_id ==
+user.id
+);
+
+payments.innerHTML =
+"";
+
+if(
+myPayments.length === 0
+){
+
+payments.innerHTML =
+
+`
+
+<p>
+
+No payments found.
+
+</p>
+
+`;
+
+return;
+
+}
+
+myPayments.forEach(payment=>{
+
+payments.innerHTML +=
+
+`
+
+<div class="payment-card">
+
+<h3>
+
+Payment #${payment.id}
+
+</h3>
+
+<div class="info">
+
+<b>Amount:</b>
+
+${payment.amount} RWF
+
+<br>
+
+<b>Provider:</b>
+
+${payment.provider}
+
+<br>
+
+<b>Phone:</b>
+
+${payment.phone_number}
+
+</div>
+
+<span class="badge
+${payment.status
+.toLowerCase()}">
+
+${payment.status}
+
+</span>
+
+</div>
+
+`;
+
+});
+
+}
+
+loadPayments();
+
+</script>
+
+</body>
+
+</html>

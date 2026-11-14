@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>Dentist Profile</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:#f5f9fc;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:25px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+margin-bottom:20px;
+box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.profile{
+display:grid;
+grid-template-columns:300px 1fr;
+gap:20px;
+}
+
+.avatar{
+width:120px;
+height:120px;
+border-radius:50%;
+background:#0a4d8c;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:40px;
+margin:auto;
+}
+
+input,
+select{
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:10px;
+margin-bottom:15px;
+}
+
+button{
+background:#25c26e;
+color:white;
+border:none;
+padding:14px;
+border-radius:10px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>
+👨‍⚕️ Dentist Profile
+</h1>
+
+<p>
+Manage your professional information.
+</p>
+
+</div>
+
+<div class="profile">
+
+<div class="card">
+
+<div
+class="avatar"
+id="avatar">
+
+D
+
+</div>
+
+<br>
+
+<h2
+id="profileName"
+style="text-align:center;">
+Dentist
+</h2>
+
+<br>
+
+<p>
+📧
+<span id="profileEmail"></span>
+</p>
+
+<p>
+🦷
+<span id="profileSpeciality">
+Not Set
+</span>
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>
+Professional Details
+</h2>
+
+<br>
+
+<input
+id="speciality"
+placeholder="Dental Speciality">
+
+<input
+id="experience"
+type="number"
+placeholder="Years of Experience">
+
+<input
+id="license"
+placeholder="License Number">
+
+<input
+id="clinic"
+placeholder="Clinic Name">
+
+<button
+onclick="saveProfile()">
+
+Save Profile
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const API =
+"https://teledentalrwanda.sangoblaise51.workers.dev";
+
+const user =
+JSON.parse(
+localStorage.getItem("user")
+);
+
+if(
+!user ||
+user.role !== "dentist"
+){
+location =
+"login.html";
+}
+
+profileName.innerHTML =
+user.fullname;
+
+profileEmail.innerHTML =
+user.email;
+
+avatar.innerHTML =
+user.fullname
+.charAt(0)
+.toUpperCase();
+
+async function loadProfile(){
+
+const res =
+await fetch(
+API + "/user",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+id:user.id
+})
+}
+);
+
+const profile =
+await res.json();
+
+speciality.value =
+profile.speciality || "";
+
+experience.value =
+profile.experience || "";
+
+license.value =
+profile.license_number || "";
+
+clinic.value =
+profile.clinic_name || "";
+
+profileSpeciality.innerHTML =
+profile.speciality ||
+"Not Set";
+
+}
+
+async function saveProfile(){
+
+const res =
+await fetch(
+API + "/update-dentist-profile",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+
+user_id:user.id,
+
+speciality:
+speciality.value,
+
+experience:
+experience.value,
+
+license_number:
+license.value,
+
+clinic_name:
+clinic.value
+
+})
+}
+);
+
+const data =
+await res.json();
+
+if(data.success){
+
+alert(
+"Profile Updated"
+);
+
+loadProfile();
+
+}
+
+}
+
+loadProfile();
+
+</script>
+
+</body>
+</html>

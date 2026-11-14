@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+TeleDent Rwanda | Products
+</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#c6c3c5;
+color:#222;
+}
+
+header{
+background:#0a4d8c;
+padding:15px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:white;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+.hero{
+background:linear-gradient(
+135deg,
+#0a4d8c,
+#1976d2
+);
+padding:90px 20px;
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:15px;
+}
+
+.hero p{
+max-width:850px;
+margin:auto;
+font-size:20px;
+line-height:1.8;
+}
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:30px 20px;
+}
+
+.section h2{
+color:#0a4d8c;
+margin-bottom:25px;
+}
+
+.card{
+background:rgb(243, 240, 240);
+padding:25px;
+border-radius:15px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.product-card{
+background:rgb(249, 248, 248);
+padding:20px;
+border-radius:15px;
+box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
+
+.product-image{
+height:100px;
+background:#eaf2fb;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:90px;
+margin-bottom:15px;
+}
+
+input,
+select{
+width:100%;
+padding:15px;
+border:1px solid #ebeaea;
+border-radius:10px;
+margin-bottom:15px;
+}
+
+.badge{
+display:inline-block;
+background:#0e9431;
+color:white;
+padding:6px 12px;
+border-radius:20px;
+font-size:12px;
+margin-top:10px;
+}
+
+.button{
+display:inline-block;
+padding:12px 22px;
+background:#22e663;
+color:white;
+text-decoration:none;
+border-radius:25px;
+font-weight:bold;
+margin-top:15px;
+}
+
+footer{
+background:#0a4d8c;
+color:white;
+text-align:center;
+padding:40px 20px;
+margin-top:40px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:36px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+🦷 TeleDent Rwanda
+</div>
+
+<nav>
+
+<a href="index.html">
+Home
+</a>
+
+<a href="academics.html">
+Academics
+</a>
+
+<a href="dentists.html">
+Dentists
+</a>
+
+<a href="login.html">
+Login
+</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>
+Dental Products & Recommendations
+</h1>
+
+<p>
+
+Explore oral healthcare products,
+hygiene kits and professional recommendations
+to improve your dental health.
+
+</p>
+
+</section>
+
+<section class="section">
+
+<h2>
+🔍 Search Products
+</h2>
+
+<div class="card">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search products..."
+onkeyup="filterProducts()">
+
+<select
+id="categoryFilter"
+onchange="filterProducts()">
+
+<option value="all">
+All Categories
+</option>
+
+<option value="toothbrush">
+Toothbrushes
+</option>
+
+<option value="toothpaste">
+Toothpaste
+</option>
+
+<option value="mouthwash">
+Mouthwash
+</option>
+
+<option value="orthodontics">
+Orthodontics
+</option>
+
+<option value="kits">
+Oral Care Kits
+</option>
+
+</select>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>
+Featured Products
+</h2>
+
+<div
+id="products"
+class="grid">
+
+<div
+class="product-card"
+data-category="toothbrush">
+
+<div class="product-image">
+🪥
+</div>
+
+<h3>
+Soft Toothbrush
+</h3>
+
+<p>
+Recommended for daily brushing.
+</p>
+
+<span class="badge">
+Popular
+</span>
+
+</div>
+
+<div
+class="product-card"
+data-category="toothpaste">
+
+<div class="product-image">
+🦷
+</div>
+
+<h3>
+Fluoride Toothpaste
+</h3>
+
+<p>
+Helps strengthen enamel.
+</p>
+
+<span class="badge">
+Dentist Recommended
+</span>
+
+</div>
+
+<div
+class="product-card"
+data-category="mouthwash">
+
+<div class="product-image">
+🧴
+</div>
+
+<h3>
+Antibacterial Mouthwash
+</h3>
+
+<p>
+Supports healthy gums.
+</p>
+
+<span class="badge">
+Best Seller
+</span>
+
+</div>
+
+<div
+class="product-card"
+data-category="orthodontics">
+
+<div class="product-image">
+😁
+</div>
+
+<h3>
+Braces Care Kit
+</h3>
+
+<p>
+Designed for orthodontic patients.
+</p>
+
+</div>
+
+<div
+class="product-card"
+data-category="kits">
+
+<div class="product-image">
+🎒
+</div>
+
+<h3>
+Family Oral Care Kit
+</h3>
+
+<p>
+Complete dental care bundle.
+</p>
+
+</div>
+
+<div
+class="product-card"
+data-category="kits">
+
+<div class="product-image">
+✨
+</div>
+
+<h3>
+Premium Dental Kit
+</h3>
+
+<p>
+Professional oral hygiene package.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>
+Recommended By Dentists
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Prevention Kit
+</h3>
+
+<p>
+
+Ideal for daily oral hygiene and
+preventing common dental problems.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Children's Dental Kit
+</h3>
+
+<p>
+
+Specially selected products for
+younger patients.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Orthodontic Care Package
+</h3>
+
+<p>
+
+Recommended for patients
+using braces or aligners.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>
+Why Product Recommendations Matter
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+✅ Better Oral Hygiene
+
+</div>
+
+<div class="card">
+
+✅ Prevent Tooth Decay
+
+</div>
+
+<div class="card">
+
+✅ Healthier Gums
+
+</div>
+
+<div class="card">
+
+✅ Support Orthodontic Treatment
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>
+Product FAQs
+</h2>
+
+<div class="card">
+
+<h3>
+Can I buy products online?
+</h3>
+
+<p>
+
+Future versions of TeleDent Rwanda
+will support online ordering.
+
+</p>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>
+Are products dentist approved?
+</h3>
+
+<p>
+
+Recommendations are aligned with
+professional oral healthcare practices.
+
+</p>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>
+Will more products be added?
+</h3>
+
+<p>
+
+Yes, TeleDent Rwanda can expand to
+include a full dental marketplace.
+
+</p>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>
+🦷 TeleDent Rwanda
+</h3>
+
+<p>
+
+Better Oral Health Through
+Education and Technology
+
+</p>
+
+</footer>
+
+<script>
+
+function filterProducts(){
+
+const search =
+document.getElementById(
+"searchInput"
+)
+.value
+.toLowerCase();
+
+const category =
+document.getElementById(
+"categoryFilter"
+)
+.value;
+
+document
+.querySelectorAll(
+".product-card"
+)
+.forEach(item=>{
+
+const text =
+item.innerText
+.toLowerCase();
+
+const matchesSearch =
+text.includes(search);
+
+const matchesCategory =
+
+category === "all"
+
+||
+
+item.dataset.category === category;
+
+item.style.display =
+
+(matchesSearch &&
+matchesCategory)
+
+?
+
+"block"
+
+:
+
+"none";
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>

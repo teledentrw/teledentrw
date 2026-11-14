@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TeleDent Rwanda | Virtual Dental Care</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#e9ebed;
+color:#222;
+}
+
+header{
+background:#0a4d8c;
+padding:10px 15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;;
+}
+
+.logo{
+font-size:38px;
+font-weight:800;
+color:white;
+}
+
+nav{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+font-weight:500;
+}
+
+.menu-btn{
+background:white;
+color:#0a4d8c;
+padding:10px 18px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.side-menu{
+position:fixed;
+top:0;
+left:-320px;
+width:300px;
+height:100%;
+background:rgb(251, 250, 251);
+padding:20px;
+transition:.3s;
+z-index:9999;
+overflow-y:auto;
+box-shadow:0 0 20px rgba(9, 9, 9, 0.196);
+}
+
+.side-menu.active{
+left:0;
+}
+
+.menu-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.close-btn{
+font-size:32px;
+cursor:pointer;
+}
+
+.menu-title{
+font-size:14px;
+font-weight:bold;
+color:#888;
+margin-bottom:15px;
+}
+
+.side-menu a{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 0;
+text-decoration:none;
+font-size:20px;
+color:#162a63;
+border-bottom:1px solid #eee;
+}
+
+.hero{
+background:linear-gradient(
+135deg,
+#0a4d8c,
+#1976d2
+);
+color:white;
+text-align:center;
+padding:120px 20px;
+}
+
+.hero h1{
+font-size:54px;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:850px;
+margin:auto;
+font-size:20px;
+line-height:1.8;
+}
+
+.button{
+display:inline-block;
+margin-top:25px;
+padding:14px 32px;
+background:#25c26e;
+color:white;
+text-decoration:none;
+border-radius:30px;
+font-weight:bold;
+}
+
+.secondary-btn{
+display:inline-block;
+margin-top:25px;
+margin-left:10px;
+padding:14px 32px;
+background:white;
+color:#0a4d8c;
+text-decoration:none;
+border-radius:30px;
+font-weight:bold;
+}
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:30px 20px;
+}
+
+.section h2{
+color:#0a4d8c;
+margin-bottom:25px;
+font-size:34px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:rgb(215, 212, 212);
+padding:25px;
+font-size:20px;
+border-radius:15px;
+box-shadow:0 3px 22px rgba(0,0,0,.08);
+}
+
+.card h3{
+margin-bottom:10px;
+
+}
+
+.stats{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.stat-card{
+background:#0a4d8c;
+color:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+}
+
+.stat-card h3{
+font-size:34px;
+margin-bottom:10px;
+}
+
+.step{
+
+display:flex;
+flex-direction:row;
+
+align-items:center;
+
+gap:20px;
+
+padding:25px;
+
+}
+
+.step-icon{
+
+font-size:30px;
+
+margin-right:5px;
+
+}
+
+.step-number{
+
+width:60px;
+height:60px;
+
+background:#1565C0;
+
+color:white;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+font-size:28px;
+
+font-weight:bold;
+
+flex-shrink:0;
+
+}
+
+.trust{
+background:#0a4d8c;
+color:white;
+}
+
+.trust h2{
+color:white;
+text-align:center;
+}
+
+.trust-grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.trust-card{
+background:rgba(255,255,255,.12);
+padding:20px;
+border-radius:12px;
+}
+
+.faq-item{
+background:rgb(217, 215, 215);
+padding:20px;
+border-radius:12px;
+margin-bottom:15px;
+box-shadow:0 2px 10px rgba(0,0,0,.06);
+}
+
+.contact-card{
+background:rgb(217, 215, 215);
+padding:30px;
+font-size: 20px;
+border-radius:15px;
+box-shadow:0 2px 10px rgba(0,0,0,.06);
+}
+
+footer{
+background:#0a4d8c;
+color:white;
+padding:50px 20px;
+text-align:center;
+}
+
+footer p{
+margin:10px 0;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:38px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+nav a{
+display:none;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="menu" class="side-menu">
+
+<div class="menu-header">
+
+<h2>Menu</h2>
+
+<div
+class="close-btn"
+onclick="closeMenu()">
+✕
+</div>
+
+</div>
+
+<div class="menu-title">
+
+EXPLORE
+
+</div>
+
+<a href="products.html">
+Products
+<span>></span>
+</a>
+
+<a href="academics.html">
+Academics
+<span>></span>
+</a>
+
+<a href="about.html">
+About Us
+<span>></span>
+</a>
+
+<a href="services.html">
+Services
+<span>></span>
+</a>
+
+<a href="dentists.html">
+Our Dentists
+<span>></span>
+</a>
+
+<a href="#faq">
+FAQs
+<span>></span>
+</a>
+
+<a href="#contact">
+Contact Us
+<span>></span>
+</a>
+
+</div>
+
+<header>
+
+<div class="logo">
+
+🦷 TeleDent Rwanda
+
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="products.html">Products</a>
+
+<a href="academics.html">Academics</a>
+
+<a href="dentists.html">Dentists</a>
+
+<a href="login.html">Login</a>
+
+<a href="register.html">
+Sign Up
+</a>
+
+<button
+class="menu-btn"
+onclick="openMenu()">
+
+☰ Menu
+
+</button>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>
+Virtual Dental Care Anywhere in Rwanda
+</h1>
+
+<p>
+
+Connect with licensed dentists online,
+upload dental images, receive diagnosis,
+book appointments and manage your oral health
+without leaving your home.
+
+</p>
+
+<a href="register.html" class="button">
+
+Get Started
+
+</a>
+
+<a href="dentists.html" class="secondary-btn">
+
+Find a Dentist
+
+</a>
+
+</section>
+
+<section class="section">
+
+<h2>
+Explore TeleDent Rwanda
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+🦷 Products
+</h3>
+
+<p>
+
+Explore dental care products,
+oral hygiene recommendations,
+and future online dental shopping.
+
+</p>
+
+<br>
+
+<a
+href="products.html"
+class="button">
+
+Explore Products
+
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+🎓 Academics
+</h3>
+
+<p>
+
+Access oral health education,
+research resources and
+community learning materials.
+
+</p>
+
+<br>
+
+<a
+href="academics.html"
+class="button">
+
+Explore Academics
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section
+id="about"
+class="section">
+
+<h2>
+About TeleDent Rwanda
+</h2>
+
+<div class="card">
+
+<p style="line-height:1.8;">
+
+TeleDent Rwanda is an innovative tele-dentistry platform
+designed to improve access to oral healthcare across Rwanda.
+Patients can connect with licensed dentists,
+receive professional guidance, upload photos,
+schedule appointments and manage treatment records
+through a secure digital platform.
+
+</p>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>
+Why Choose TeleDent Rwanda?
+</h2>
+
+<div class="grid">
+
+<div class="card">
+🩺 Licensed Dentists
+</div>
+
+<div class="card">
+
+<span class="step-icon">
+
+📷 
+
+</span>
+
+Dental Photo Upload
+
+</div>
+
+<div class="card">
+<span class="step-icon">
+
+💬 
+
+</span>
+
+Secure Messaging
+
+</div>
+
+<div class="card">
+<span class="step-icon">
+
+📅 
+
+</span>
+
+Appointment Management
+
+</div>
+
+<div class="card">
+<span class="step-icon"></span>
+
+📁 
+</span>
+
+Medical Records
+</div>
+
+<div class="card">
+<span class="step-icon"></span>
+💳 Digital Payments
+</div>
+
+</div>
+
+</section>
+
+<section
+id="services"
+class="section">
+
+<h2>
+Services
+</h2>
+
+<div class="grid">
+
+<div class="card">
+Dental Consultation
+</div>
+
+<div class="card">
+Emergency Dental Advice
+</div>
+
+<div class="card">
+Tooth Pain Assessment
+</div>
+
+<div class="card">
+Orthodontic Consultation
+</div>
+
+<div class="card">
+Oral Hygiene Education
+</div>
+
+<div class="card">
+Referral Services
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>
+How It Works
+</h2>
+
+
+<div class="grid">
+
+<div class="card">
+<div class="step-number">
+
+1
+
+</div>
+Create Account
+</div>
+
+<div class="card">
+<div class="step-number">
+2
+</div>
+Submit Symptoms
+</div>
+
+<div class="card">
+<div class="step-number">
+
+3
+
+</div>
+Upload Images
+</div>
+
+<div class="card">
+<div class="step-number">
+
+4
+
+</div>
+Dentist Review
+</div>
+
+<div class="card">
+<div class="step-number">
+
+5
+
+</div>
+Receive Diagnosis
+</div>
+
+<div class="card">
+<div class="step-number">
+6
+</div>
+Schedule Appointment
+</div>
+
+</section>
+
+<section class="section trust">
+
+<h2>
+Why Patients Trust Us
+</h2>
+
+<div class="trust-grid">
+
+<div class="trust-card">
+✅ Verified Dentists
+</div>
+
+<div class="trust-card">
+✅ Protected Health Records
+</div>
+
+<div class="trust-card">
+✅ Online Consultations
+</div>
+
+<div class="trust-card">
+✅ Appointment Scheduling
+</div>
+
+<div class="trust-card">
+✅ Secure Payments
+</div>
+
+<div class="trust-card">
+✅ 24/7 Platform Access
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>
+Platform Statistics
+</h2>
+
+<div class="stats">
+
+<div class="stat-card">
+<h3>100+</h3>
+Patients
+</div>
+
+<div class="stat-card">
+<h3>20+</h3>
+Dentists
+</div>
+
+<div class="stat-card">
+<h3>500+</h3>
+Consultations
+</div>
+
+<div class="stat-card">
+<h3>24/7</h3>
+Support
+</div>
+
+</div>
+
+</section>
+
+<section
+id="faq"
+class="section">
+
+<h2>
+Frequently Asked Questions
+</h2>
+
+<div class="faq-item">
+
+<h3>
+What is TeleDent Rwanda?
+</h3>
+
+<p>
+TeleDent Rwanda is a tele-dentistry platform
+connecting patients with licensed dentists.
+</p>
+
+</div>
+
+<div class="faq-item">
+
+<h3>
+How do online consultations work?
+</h3>
+
+<p>
+Patients upload symptoms and dental photos
+which are reviewed by professional dentists.
+</p>
+
+</div>
+
+<div class="faq-item">
+
+<h3>
+Can I choose a dentist?
+</h3>
+
+<p>
+Yes, patients can view dentist profiles
+and choose approved professionals.
+</p>
+
+</div>
+
+<div class="faq-item">
+
+<h3>
+How are payments made?
+</h3>
+
+<p>
+Consultation payments can be completed
+through supported digital payment channels.
+</p>
+
+</div>
+
+<div class="faq-item">
+
+<h3>
+Can dentists register?
+</h3>
+
+<p>
+Yes. Dentists register and are approved
+before joining the public directory.
+</p>
+
+</div>
+
+<div class="faq-item">
+
+<h3>
+Does TeleDent Rwanda support education?
+</h3>
+
+<p>
+Yes. Academic resources and oral health
+education content are available through
+the Academics section.
+</p>
+
+</div>
+
+</section>
+
+<section
+id="contact"
+class="section">
+
+<h2>
+Contact Us
+</h2>
+
+<div class="contact-card">
+
+<p>
+📍 Kigali, Rwanda
+</p>
+
+<br>
+
+<p>
+📧 support@teledent.rw
+</p>
+
+<br>
+
+<p>
+📞 +250 XXX XXX XXX
+</p>
+
+<br>
+
+<p>
+🕒 24/7 Digital Access
+</p>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>
+🦷 TeleDent Rwanda
+</h3>
+
+<p>
+Virtual Dental Care Across Rwanda
+</p>
+
+<p>
+Connecting Patients and Dentists Through Technology
+</p>
+
+</footer>
+
+<script>
+
+function openMenu(){
+
+document
+.getElementById("menu")
+.classList.add("active");
+
+}
+
+function closeMenu(){
+
+document
+.getElementById("menu")
+.classList.remove("active");
+
+}
+
+</script>
+
+<script>
+
+async function loadLatestAcademicResources(){
+
+const response =
+await fetch(
+"https://teledentalrwanda.sangoblaise51.workers.dev/academic-resources"
+);
+
+const resources =
+await response.json();
+
+const container =
+document.getElementById(
+"latestAcademicResources"
+);
+
+if(resources.length === 0){
+
+container.innerHTML =
+"No resources available";
+
+return;
+
+}
+
+container.innerHTML =
+resources.slice(0,3)
+.map(resource => `
+
+<div class="card">
+
+<h3>
+${resource.title}
+</h3>
+
+<p>
+${resource.description}
+</p>
+
+<p>
+
+Category:
+${resource.category}
+
+</p>
+
+<a
+href="academics.html"
+class="button">
+
+Read More
+
+</a>
+
+</div>
+
+<br>
+
+`)
+.join("");
+
+}
+
+</script>
+
+<script>
+
+</script>
+
+</body>
+</html>

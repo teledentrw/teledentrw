@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Profile | TeleDental Rwanda</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:#f5f9fc;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:25px;
+}
+
+.header{
+background:white;
+padding:25px;
+border-radius:12px;
+margin-bottom:20px;
+box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.profile-grid{
+display:grid;
+grid-template-columns:350px 1fr;
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.avatar{
+width:120px;
+height:120px;
+background:#0a4d8c;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:40px;
+color:white;
+margin:auto;
+margin-bottom:20px;
+}
+
+.info p{
+margin-bottom:12px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
+.stat-card{
+background:#eef5fb;
+padding:20px;
+border-radius:10px;
+text-align:center;
+}
+
+.big{
+font-size:28px;
+font-weight:bold;
+color:#0a4d8c;
+}
+
+input{
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:10px;
+margin-bottom:15px;
+}
+
+button{
+padding:14px 20px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.primary{
+background:#0a4d8c;
+color:white;
+}
+
+.success{
+background:#25c26e;
+color:white;
+}
+
+@media(max-width:900px){
+
+.profile-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>👤 Patient Profile</h1>
+
+<p>
+Manage your TeleDental Rwanda account information.
+</p>
+
+</div>
+
+<div class="profile-grid">
+
+<div class="card">
+
+<div
+class="avatar"
+id="avatar">
+P
+</div>
+<div style="text-align:center;">
+
+<img
+id="profileImage"
+src=""
+style="
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #0a4d8c;
+display:none;
+">
+
+<br>
+
+<input
+type="file"
+id="profilePhoto"
+accept="image/*">
+
+<br><br>
+
+<button
+class="primary"
+onclick="uploadProfilePhoto()">
+
+Upload Photo
+
+</button>
+
+</div>
+
+<h2
+id="profileName"
+style="text-align:center;">
+Patient
+</h2>
+
+<br>
+
+<div class="info">
+
+<p>
+📧 Email:
+<span id="profileEmail"></span>
+</p>
+
+<p>
+🦷 Role:
+<span id="profileRole"></span>
+</p>
+
+<p>
+📱 Phone:
+<span id="profilePhone">
+Not Set
+</span>
+</p>
+
+<p>
+⚧ Gender:
+<span id="profileGender">
+Not Set
+</span>
+</p>
+
+</div>
+
+</div>
+
+<div>
+
+<div class="card">
+
+<h2>
+Account Statistics
+</h2>
+
+<div class="stats">
+
+<div class="stat-card">
+
+<div
+class="big"
+id="totalCases">
+0
+</div>
+
+Consultations
+
+</div>
+
+<div class="stat-card">
+
+<div
+class="big"
+id="totalAppointments">
+0
+</div>
+
+Appointments
+
+</div>
+
+<div class="stat-card">
+
+<div
+class="big"
+id="totalPayments">
+0
+</div>
+
+Payments
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h2>
+Update Profile
+</h2>
+
+<br>
+
+<input
+id="phone"
+placeholder="Phone Number">
+
+<input
+id="gender"
+placeholder="Gender">
+
+<button
+class="primary"
+onclick="saveProfile()">
+
+Save Changes
+
+</button>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h2>
+Change Password
+</h2>
+
+<br>
+
+<input
+id="newPassword"
+type="password"
+placeholder="New Password">
+
+<input
+id="confirmPassword"
+type="password"
+placeholder="Confirm Password">
+
+<button
+class="success"
+onclick="changePassword()">
+
+Update Password
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const API =
+"https://teledentalrwanda.sangoblaise51.workers.dev";
+
+const user =
+JSON.parse(
+localStorage.getItem("user")
+);
+
+if(
+!user
+){
+
+location =
+"login.html";
+
+}
+
+document.getElementById(
+"profileName"
+).innerHTML =
+user.fullname;
+
+document.getElementById(
+"profileEmail"
+).innerHTML =
+user.email || "-";
+
+document.getElementById(
+"profileRole"
+).innerHTML =
+user.role;
+
+if(user.phone){
+
+profilePhone.innerHTML =
+user.phone;
+
+phone.value =
+user.phone;
+
+}
+
+if(user.gender){
+
+profileGender.innerHTML =
+user.gender;
+
+gender.value =
+user.gender;
+
+}
+
+if(
+user.profile_photo
+){
+
+profileImage.src =
+user.profile_photo;
+
+profileImage.style.display =
+"block";
+
+avatar.style.display =
+"none";
+
+}
+
+document.getElementById(
+"avatar"
+).innerHTML =
+user.fullname
+.charAt(0)
+.toUpperCase();
+
+async function loadStats(){
+
+try{
+
+const consultationsRes =
+await fetch(
+API + "/my-consultations",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+patient_id:user.id
+})
+}
+);
+
+const consultations =
+await consultationsRes.json();
+
+document.getElementById(
+"totalCases"
+).innerHTML =
+consultations.length;
+
+}catch(e){}
+
+try{
+
+const appointmentsRes =
+await fetch(
+API + "/appointments"
+);
+
+const appointments =
+await appointmentsRes.json();
+
+document.getElementById(
+"totalAppointments"
+).innerHTML =
+
+appointments.filter(
+a => a.patient_id == user.id
+).length;
+
+}catch(e){}
+
+try{
+
+const paymentsRes =
+await fetch(
+API + "/payments"
+);
+
+const payments =
+await paymentsRes.json();
+
+document.getElementById(
+"totalPayments"
+).innerHTML =
+
+payments.filter(
+p => p.patient_id == user.id
+).length;
+
+}catch(e){}
+
+}
+
+async function uploadProfilePhoto(){
+
+if(
+!profilePhoto.files.length
+){
+
+alert(
+"Please select a photo"
+);
+
+return;
+
+}
+
+const fd =
+new FormData();
+
+fd.append(
+"file",
+profilePhoto.files[0]
+);
+
+const upload =
+await fetch(
+API + "/upload-photo",
+{
+method:"POST",
+body:fd
+}
+);
+
+const uploadData =
+await upload.json();
+
+const photoUrl =
+"https://pub-d893af81bd0f4eeead94f13b98e040d7.r2.dev/" +
+uploadData.fileName;
+
+const update =
+await fetch(
+API + "/update-profile-photo",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+user_id:user.id,
+photo_url:photoUrl
+})
+}
+);
+
+const result =
+await update.json();
+
+if(result.success){
+
+alert(
+"Profile Photo Updated"
+);
+
+loadProfile();
+
+}
+
+}
+
+async function saveProfile(){
+
+const res =
+await fetch(
+API + "/update-profile",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+user_id:user.id,
+phone:phone.value,
+gender:gender.value
+})
+}
+);
+
+const data =
+await res.json();
+
+if(data.success){
+
+alert(
+"Profile Updated"
+);
+
+loadProfile();
+
+}
+
+}
+
+async function changePassword(){
+
+if(
+newPassword.value !==
+confirmPassword.value
+){
+
+alert(
+"Passwords do not match"
+);
+
+return;
+
+}
+
+const res =
+await fetch(
+API + "/change-password",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+user_id:user.id,
+password:newPassword.value
+})
+}
+);
+
+const data =
+await res.json();
+
+if(data.success){
+
+alert(
+"Password Updated"
+);
+
+newPassword.value = "";
+
+confirmPassword.value = "";
+
+}
+
+}
+
+async function loadProfile(){
+
+const res =
+await fetch(
+API + "/user",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+id:user.id
+})
+}
+);
+
+const profile =
+await res.json();
+
+profileName.innerHTML =
+profile.fullname;
+
+profileEmail.innerHTML =
+profile.email || "-";
+
+profileRole.innerHTML =
+profile.role;
+
+profilePhone.innerHTML =
+profile.phone || "Not Set";
+
+profileGender.innerHTML =
+profile.gender || "Not Set";
+
+phone.value =
+profile.phone || "";
+
+gender.value =
+profile.gender || "";
+
+if(profile.profile_photo){
+
+profileImage.src =
+profile.profile_photo;
+
+profileImage.style.display =
+"block";
+
+avatar.style.display =
+"none";
+
+}
+
+}
+
+loadProfile();
+loadStats();
+</script>
+
+</body>
+
+</html>

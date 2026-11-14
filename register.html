@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Register | TeleDent Rwanda</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:#f5f9fc;
+min-height:100vh;
+}
+
+header{
+background:#0a4d8c;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+color:white;
+font-size:28px;
+font-weight:bold;
+}
+
+.logo span{
+color:#25c26e;
+}
+
+.nav-btn{
+padding:10px 20px;
+background:white;
+border:none;
+border-radius:25px;
+text-decoration:none;
+color:#0a4d8c;
+font-weight:bold;
+}
+
+.wrapper{
+max-width:1200px;
+margin:auto;
+padding:40px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+}
+
+.left{
+
+background:linear-gradient(
+135deg,
+#0a4d8c,
+#1976d2
+);
+
+border-radius:20px;
+padding:50px;
+color:white;
+display:flex;
+flex-direction:column;
+justify-content:center;
+min-height:700px;
+}
+
+.left h1{
+font-size:45px;
+margin-bottom:20px;
+}
+
+.left p{
+font-size:18px;
+line-height:1.8;
+}
+
+.right{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.right h2{
+margin-bottom:10px;
+color:#0a4d8c;
+}
+
+.right p{
+margin-bottom:20px;
+color:#666;
+}
+
+.role-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-bottom:20px;
+}
+
+.role-card{
+padding:15px;
+border:2px solid #ddd;
+border-radius:10px;
+cursor:pointer;
+text-align:center;
+}
+
+.role-card.active{
+border-color:#25c26e;
+background:#eafaf1;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-bottom:15px;
+border:1px solid #ddd;
+border-radius:10px;
+}
+
+button{
+width:100%;
+padding:15px;
+background:#25c26e;
+border:none;
+border-radius:10px;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.login-link{
+text-align:center;
+margin-top:20px;
+}
+
+.login-link a{
+text-decoration:none;
+color:#0a4d8c;
+font-weight:bold;
+}
+
+@media(max-width:900px){
+
+.wrapper{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+🦷 TeleDent <span>Rwanda</span>
+</div>
+
+<a href="login.html" class="nav-btn">
+Login
+</a>
+
+</header>
+
+<div class="wrapper">
+
+<div class="left">
+
+<h1>
+Virtual Dental Care
+</h1>
+
+<p>
+
+Connect with licensed dentists online.
+
+Upload photos, receive diagnosis,
+book appointments and keep your
+medical records securely online.
+
+</p>
+
+</div>
+
+<div class="right">
+
+<h2>Create Account</h2>
+
+<p>
+Choose your role and get started.
+</p>
+
+<div class="role-grid">
+
+<div
+class="role-card active"
+onclick="selectRole('patient',this)">
+
+🧑 Patient
+
+</div>
+
+<div
+class="role-card"
+onclick="selectRole('dentist',this)">
+
+🦷 Dentist
+
+</div>
+
+</div>
+
+<input
+id="fullname"
+placeholder="Full Name">
+
+<input
+id="email"
+placeholder="Email Address">
+
+<div style="
+display:grid;
+grid-template-columns:
+120px 1fr;
+gap:10px;
+">
+
+<select id="countryCode">
+
+<option value="+250">
+RW +250
+</option>
+
+</select>
+
+<input
+id="phone"
+placeholder="Phone Number">
+
+</div>
+
+<h4 style="
+margin-top:15px;
+margin-bottom:10px;
+">
+Gender
+</h4>
+
+<div
+style="
+display:flex;
+gap:10px;
+margin-bottom:20px;
+">
+
+<button
+type="button"
+class="gender-btn"
+onclick="setGender('Male',this)">
+Male
+</button>
+
+<button
+type="button"
+class="gender-btn"
+onclick="setGender('Female',this)">
+Female
+</button>
+
+<button
+type="button"
+class="gender-btn"
+onclick="setGender('Other',this)">
+Other
+</button>
+
+</div>
+
+<div style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+">
+
+<input
+id="password"
+type="password"
+placeholder="Password">
+
+<input
+id="confirmPassword"
+type="password"
+placeholder="Confirm Password">
+
+</div>
+
+<br>
+
+<button onclick="registerUser()">
+Create Account
+</button>
+
+<div class="login-link">
+
+Already have an account?
+
+<a href="login.html">
+Login
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const API =
+"https://teledentalrwanda.sangoblaise51.workers.dev";
+
+let selectedRole = "patient";
+let selectedGender = "Male";
+
+function selectRole(role, card){
+
+selectedRole = role;
+
+document
+.querySelectorAll(".role-card")
+.forEach(c => {
+c.classList.remove("active");
+});
+
+card.classList.add("active");
+
+}
+
+function setGender(gender, button){
+
+selectedGender = gender;
+
+document
+.querySelectorAll(".gender-btn")
+.forEach(btn => {
+
+btn.style.background = "white";
+btn.style.color = "#333";
+
+});
+
+button.style.background = "#25c26e";
+button.style.color = "white";
+
+}
+
+async function registerUser(){
+
+if(
+password.value !==
+confirmPassword.value
+){
+
+alert(
+"Passwords do not match"
+);
+
+return;
+
+}
+
+let res =
+await fetch(
+API + "/register",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+
+fullname:
+fullname.value,
+
+email:
+email.value,
+
+password:
+password.value,
+
+role:
+selectedRole,
+
+phone:
+countryCode.value +
+phone.value,
+
+gender:
+selectedGender
+
+})
+}
+);
+
+let data =
+await res.json();
+
+if(data.success){
+
+alert(
+"Account Created Successfully"
+);
+
+location =
+"login.html";
+
+}else{
+
+alert(
+data.error ||
+"Registration Failed"
+);
+
+}
+
+}
+
+</script>
+</body>
+</html>
