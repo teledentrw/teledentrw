@@ -102,14 +102,11 @@ border-radius:22px;
 box-shadow:0 8px 20px rgba(0,0,0,.05);
 margin-bottom:20px;
 }
-
 .outreach-section{
 background:rgb(245, 243, 243);
 padding:25px;
-color:#0a4d8c
+color:#0a4d8c;
 border-radius:12px;
-box-shadow:0 10px 20px rgba(238, 47, 47, 0.05);
-margin-bottom:20px;
 }
 
 .record{
@@ -266,6 +263,18 @@ Operations
 </a>
 
 <div class="menu-title">
+AI & Automation
+</div>
+
+<a href="#ai-settings">
+🤖 AI Assistant
+</a>
+
+<a href="#knowledge-base">
+📖 Knowledge Base
+</a>
+
+<div class="menu-title">
 Account
 </div>
 
@@ -344,7 +353,7 @@ placeholder="Button Text">
 onclick="createSection()">
 
 Publish Section
-
+</button>
 </div>
 
 <div class="section">
@@ -407,6 +416,134 @@ Loading...
 </div>
 
 <div class="section" id="academics">
+
+  <div class="section" id="ai-settings">
+
+<h2>
+🤖 TeleDent AI Assistant
+</h2>
+
+<div class="record">
+
+<label>
+Assistant Name
+</label>
+
+<input
+id="aiName"
+placeholder="TeleDent AI Agent"
+style="
+width:100%;
+padding:12px;
+margin-bottom:10px;
+">
+
+<label>
+Welcome Message
+</label>
+
+<textarea
+id="aiWelcome"
+style="
+width:100%;
+height:120px;
+padding:12px;
+margin-bottom:10px;
+"></textarea>
+
+<label>
+Theme Color
+</label>
+
+<input
+id="aiColor"
+placeholder="#2340C0"
+style="
+width:100%;
+padding:12px;
+margin-bottom:10px;
+">
+
+<label>
+Status
+</label>
+
+<select
+id="aiEnabled"
+style="
+width:100%;
+padding:12px;
+margin-bottom:10px;
+">
+
+<option value="1">
+Enabled
+</option>
+
+<option value="0">
+Disabled
+</option>
+
+</select>
+
+<button
+class="success"
+onclick="saveAISettings()">
+
+Save AI Settings
+
+</button>
+
+</div>
+
+<div
+class="section"
+id="knowledge-base">
+
+<h2>
+📖 TeleDent Knowledge Base
+</h2>
+
+<p>
+Manage answers used by TeleDent AI.
+</p>
+
+<div class="record">
+
+<input
+id="kbQuestion"
+placeholder="Example: What is tooth decay?">
+
+<textarea
+id="kbAnswer"
+placeholder="Enter AI answer">
+</textarea>
+
+<input
+id="kbKeywords"
+placeholder="Keywords: cavity,tooth decay">
+
+<button
+class="success"
+onclick="createKnowledge()">
+
+➕ Add Knowledge
+
+</button>
+
+</div>
+
+<h3>
+Saved Knowledge
+</h3>
+
+<div id="knowledgeList">
+
+Loading...
+
+</div>
+
+</div>
 
 <h2>
 📚 Academic Resources
@@ -828,8 +965,6 @@ document.getElementById(
 
 sections.map(section => `
 
-<div id="communityCards"></div>
-
 <div class="community-card">
 
 <div class="community-icon">
@@ -1208,8 +1343,189 @@ loadAcademicResources();
 
 }
 
+async function loadAISettings(){
+
+const response =
+await fetch(
+API +
+"/ai-settings"
+);
+
+const ai =
+await response.json();
+
+document.getElementById(
+"aiName"
+).value =
+ai.assistant_name || "";
+
+document.getElementById(
+"aiWelcome"
+).value =
+ai.welcome_message || "";
+
+document.getElementById(
+"aiColor"
+).value =
+ai.theme_color || "#2340C0";
+
+document.getElementById(
+"aiEnabled"
+).value =
+ai.enabled;
+
+}
+
+async function saveAISettings(){
+
+const payload = {
+
+assistant_name:
+document.getElementById(
+"aiName"
+).value,
+
+welcome_message:
+document.getElementById(
+"aiWelcome"
+).value,
+
+theme_color:
+document.getElementById(
+"aiColor"
+).value,
+
+enabled:
+document.getElementById(
+"aiEnabled"
+).value
+
+};
+
+const response =
+await fetch(
+API +
+"/update-ai-settings",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify(
+payload
+)
+}
+);
+
+const result =
+await response.json();
+
+if(result.success){
+
+alert(
+"AI Settings Updated"
+);
+
+}
+
+}
+
+async function loadKnowledge(){
+
+const response =
+await fetch(
+API + "/all-knowledge"
+);
+
+const items =
+await response.json();
+
+document.getElementById(
+"knowledgeList"
+).innerHTML =
+
+items.map(item => `
+
+<div class="record">
+
+<b>
+${item.question}
+</b>
+
+<br><br>
+
+${item.answer}
+
+<br><br>
+
+Keywords:
+${item.keywords}
+
+<br><br>
+
+<button
+class="warning"
+onclick="
+deleteKnowledge(
+${item.id}
+)
+">
+
+Delete
+
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+async function createKnowledge(){
+
+const response =
+await fetch(
+API + "/knowledge",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+
+question:
+document.getElementById(
+"kbQuestion"
+).value,
+
+answer:
+document.getElementById(
+"kbAnswer"
+).value,
+
+keywords:
+document.getElementById(
+"kbKeywords"
+).value
+
+})
+}
+);
+
+const result =
+await response.json();
+
+if(result.success){
+
+alert("Knowledge Added");
+
+}
+
+}
+
 loadAdmin();
 loadAcademicResources();
+loadAISettings();
 
 </script>
 
