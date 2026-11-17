@@ -385,9 +385,6 @@ in window
 
 const recognition =
 new SpeechRecognition();
-const SpeechRecognition =
-window.SpeechRecognition ||
-new SpeechRecognition();
 
 recognition.lang =
 "en-US";
