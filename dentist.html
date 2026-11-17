@@ -31,6 +31,7 @@ width:260px;
 background:white;
 border-right:1px solid #ddd;
 padding:20px;
+font-size:26px;
 }
 
 .sidebar h2{
@@ -59,7 +60,7 @@ padding:25px;
 
 .topbar{
 background:white;
-padding:20px;
+padding:30px;
 border-radius:12px;
 margin-bottom:20px;
 box-shadow:0 2px 10px rgba(0,0,0,.05);
@@ -74,15 +75,17 @@ margin-bottom:20px;
 }
 
 .summary-card{
-background:white;
+background:rgb(253, 251, 251);
 padding:20px;
+font-size: 20px;
 border-radius:12px;
 box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 
 .case-card{
-background:white;
+background:rgb(253, 252, 252);
 padding:20px;
+font-size:20px;
 border-radius:12px;
 margin-bottom:15px;
 box-shadow:0 2px 10px rgba(0,0,0,.05);
@@ -122,6 +125,62 @@ color:red;
 font-weight:bold;
 }
 
+.dentist-profile-card{
+display:flex;
+align-items:center;
+gap:30px;
+background:white;
+padding:30px;
+border-radius:24px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+margin-bottom:25px;
+border-top:5px solid #0a4d8c;
+}
+
+.dentist-avatar{
+width:140px;
+height:140px;
+border-radius:50%;
+object-fit:cover;
+border:5px solid #0a4d8c;
+}
+
+.dentist-details h2{
+font-size:40px;
+color:#0a4d8c;
+margin-bottom:10px;
+}
+
+.dentist-badge{
+display:inline-block;
+background:#e8f7ee;
+color:#25c26e;
+padding:8px 14px;
+border-radius:30px;
+font-size:24px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.case-image{
+width:120px;
+height:120px;
+object-fit:cover;
+border-radius:12px;
+margin-top:10px;
+border:1px solid #ddd;
+
+}
+
+.ai-suggestion{
+background:#eef7ff;
+border-left:5px solid #1976d2;
+padding:15px;
+border-radius:10px;
+margin-top:15px;
+
+}
+
 @media(max-width:900px){
 
 .dashboard{
@@ -148,20 +207,32 @@ width:100%;
 🦷 TeleDent
 </h2>
 
-<a href="#">
+<a href="dentist.html">
 📊 Dashboard
 </a>
 
-<a href="#">
-🦷 All Consultations
+<a href="dentist-consultations.html">
+🦷 Consultations
 </a>
 
-<a href="#">
+<a href="patients.html">
+👥 Patients
+</a>
+
+<a href="dentist-appointments.html">
 📅 Appointments
 </a>
 
-<a href="#">
-💬 Messages
+<a href="messages-center.html">
+💬 Messages Center
+</a>
+
+<a href="impact-dashboard.html">
+📈 Impact Dashboard
+</a>
+
+<a href="partners-and-sponsors.html">
+🤝 Partners & Sponsors
 </a>
 
 <a href="dentist-profile.html">
@@ -177,6 +248,39 @@ width:100%;
 <div class="content">
 
 <div class="topbar">
+
+<div class="dentist-profile-card">
+
+<img
+id="dentistPhoto"
+src="https://placehold.co/120x120"
+class="dentist-avatar">
+
+<div>
+
+<h2 id="dentistName">
+Loading...
+</h2>
+
+<p id="dentistSpeciality">
+General Dentistry
+</p>
+
+<p id="dentistLicense">
+License
+</p>
+
+<p id="dentistExperience">
+Experience
+</p>
+
+<p>
+✅ Verified Dentist
+</p>
+
+</div>
+
+</div>
 
 <h1 id="welcome"></h1>
 
@@ -237,13 +341,49 @@ appointments and patient care.
 
 </div>
 
+<div class="summary-card">
+
+<h3>
+⭐ Rating
+</h3>
+
+<p>
+4.8 / 5
+</p>
+
 </div>
 
-<h2>
-Patient Consultations
-</h2>
+<div class="summary-card">
 
-<div id="cases"></div>
+<h3>
+⚡ Avg Response
+</h3>
+
+<p>
+2 hrs
+</p>
+
+</div>
+
+</div>
+
+<div class="summary-card">
+
+<h3>
+🦷 Active Consultations
+</h3>
+
+<p id="activeCases">
+0
+</p>
+
+<a href="dentist-consultations.html">
+
+<button class="primary">
+View Consultations
+</button>
+
+</a>
 
 </div>
 
@@ -274,6 +414,33 @@ document.getElementById(
 ).innerHTML =
 "Welcome, Dr. " +
 user.fullname;
+
+function getPriority(symptoms){
+
+const text =
+symptoms.toLowerCase();
+
+if(
+text.includes("swelling")
+||
+text.includes("infection")
+){
+
+return "🔴 Urgent";
+
+}
+
+if(
+text.includes("pain")
+){
+
+return "🟠 High";
+
+}
+
+return "🟢 Normal";
+
+}
 
 async function loadCases(){
 
@@ -334,6 +501,13 @@ ${item.symptoms}
 </p>
 
 <p>
+<b>Priority:</b>
+${getPriority(item.symptoms)}
+</p>
+
+</p>
+
+<p>
 <b>Status:</b>
 ${item.status}
 </p>
@@ -358,10 +532,24 @@ ${item.paid == 1
 <p>
 <b>Photo:</b>
 
-${item.photo_url
-? "✅ Uploaded"
-: "❌ No Photo"}
+${
+item.photo_url
 
+?
+
+`
+
+<img
+src="${item.photo_url}"
+class="case-image">
+
+`
+
+:
+
+"❌ No Photo"
+
+}
 </p>
 
 ${

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+TeleDent Impact Dashboard
+</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f4f8fc;
+}
+
+.header{
+
+background:
+linear-gradient(
+135deg,
+#0a4d8c,
+#1976d2
+);
+
+color:white;
+
+padding:35px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.back-btn{
+
+background:white;
+
+color:#0a4d8c;
+
+padding:12px 20px;
+
+border:none;
+
+border-radius:10px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+.container{
+
+max-width:1400px;
+
+margin:auto;
+
+padding:25px;
+
+}
+
+.hero{
+
+background:white;
+
+padding:40px;
+
+border-radius:25px;
+
+margin-bottom:25px;
+
+box-shadow:
+0 10px 20px rgba(0,0,0,.05);
+
+text-align:center;
+
+}
+
+.hero h2{
+
+font-size:42px;
+
+color:#0a4d8c;
+
+margin-bottom:10px;
+
+}
+
+.hero p{
+
+font-size:18px;
+
+color:#666;
+
+}
+
+.metrics{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+
+gap:20px;
+
+margin-bottom:30px;
+
+}
+
+.metric-card{
+
+background:white;
+
+padding:25px;
+
+border-radius:20px;
+
+box-shadow:
+0 5px 20px rgba(0,0,0,.05);
+
+}
+
+.metric-card h3{
+
+color:#0a4d8c;
+
+margin-bottom:10px;
+
+}
+
+.metric-number{
+
+font-size:42px;
+
+font-weight:bold;
+
+color:#1976d2;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:20px;
+
+margin-bottom:20px;
+
+}
+
+.section{
+
+background:white;
+
+padding:25px;
+
+border-radius:20px;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,.05);
+
+}
+
+.section h3{
+
+color:#0a4d8c;
+
+margin-bottom:15px;
+
+}
+
+.progress{
+
+height:15px;
+
+background:#eee;
+
+border-radius:30px;
+
+overflow:hidden;
+
+margin-top:10px;
+
+}
+
+.progress-fill{
+
+height:100%;
+
+background:
+linear-gradient(
+90deg,
+#0a4d8c,
+#25c26e
+);
+
+}
+
+.activity{
+
+padding:12px;
+
+border-bottom:1px solid #eee;
+
+}
+
+.activity:last-child{
+
+border-bottom:none;
+
+}
+
+.ai-box{
+
+background:#eef7ff;
+
+padding:20px;
+
+border-left:5px solid #0a4d8c;
+
+border-radius:12px;
+
+line-height:1.8;
+
+}
+
+.primary{
+
+background:#0a4d8c;
+
+color:white;
+
+padding:12px 18px;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+}
+
+@media(max-width:900px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+.hero h2{
+
+font-size:30px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div>
+
+<h1>
+📊 TeleDent Impact Dashboard
+</h1>
+
+<p>
+Platform Growth, Reach & Healthcare Impact
+</p>
+
+</div>
+
+<a href="dentist.html">
+
+<button class="back-btn">
+
+← Dashboard
+
+</button>
+
+</a>
+
+</div>
+
+<div class="container">
+
+<div class="hero">
+
+<h2 id="patientCount">
+
+0
+
+</h2>
+
+<p>
+
+Patients Served Through TeleDent
+
+</p>
+
+</div>
+
+<div class="metrics">
+
+<div class="metric-card">
+
+<h3>
+👥 Patients Served
+</h3>
+
+<div
+class="metric-number"
+id="patientsServed">
+
+0
+
+</div>
+
+</div>
+
+<div class="metric-card">
+
+<h3>
+🦷 Consultations
+</h3>
+
+<div
+class="metric-number"
+id="consultationsCount">
+
+0
+
+</div>
+
+</div>
+
+<div class="metric-card">
+
+<h3>
+📅 Appointments
+</h3>
+
+<div
+class="metric-number"
+id="appointmentsCount">
+
+0
+
+</div>
+
+</div>
+
+<div class="metric-card">
+
+<h3>
+👨‍⚕️ Dentists
+</h3>
+
+<div
+class="metric-number"
+id="dentistsCount">
+
+0
+
+</div>
+
+</div>
+
+<div class="metric-card">
+
+<h3>
+🤖 AI Interactions
+
+</h3>
+
+<div
+class="metric-number"
+id="aiCount">
+
+0
+
+<br><br>
+
+<a href="partners-and-sponsors.html">
+
+<button class="primary">
+
+🤝 View Partners Portal
+
+</button>
+
+</a>
+</div>
+
+
+<div class="metric-card">
+
+<h3>
+🌍 Districts Reached
+</h3>
+
+<div
+class="metric-number"
+id="districtsCount">
+
+30
+
+</div>
+
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="section">
+
+<h3>
+
+📈 Growth Indicators
+
+</h3>
+
+<p>
+Platform Adoption
+
+</p>
+
+<div class="progress">
+
+<div
+id="adoptionBar"
+class="progress-fill"
+style="width:0%">
+
+</div>
+
+</div>
+
+<br>
+
+<p>
+Clinical Engagement
+
+</p>
+
+<div class="progress">
+
+<div
+id="engagementBar"
+class="progress-fill"
+style="width:0%">
+
+</div>
+
+</div>
+
+<br>
+
+<p>
+Patient Retention
+
+</p>
+
+<div class="progress">
+
+<div
+id="retentionBar"
+class="progress-fill"
+style="width:0%">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>
+
+🚀 Recent Platform Activity
+
+</h3>
+
+<div id="activityList">
+
+Loading...
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>
+
+🤖 TeleDent AI Insights
+
+</h3>
+
+<div
+id="aiInsights"
+class="ai-box">
+
+Loading AI insights...
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const API =
+"https://teledentalrwanda.sangoblaise51.workers.dev";
+
+async function loadImpact(){
+
+const users =
+await fetch(
+API + "/users"
+).then(r=>r.json());
+
+const consultations =
+await fetch(
+API + "/consultations"
+).then(r=>r.json());
+
+const appointments =
+await fetch(
+API + "/appointments"
+).then(r=>r.json());
+
+const patients =
+users.filter(
+u=>u.role==="patient"
+);
+
+const dentists =
+users.filter(
+u=>u.role==="dentist"
+);
+
+document.getElementById(
+"patientCount"
+).innerHTML =
+patients.length;
+
+document.getElementById(
+"patientsServed"
+).innerHTML =
+patients.length;
+
+document.getElementById(
+"consultationsCount"
+).innerHTML =
+consultations.length;
+
+document.getElementById(
+"appointmentsCount"
+).innerHTML =
+appointments.length;
+
+document.getElementById(
+"dentistsCount"
+).innerHTML =
+dentists.length;
+
+document.getElementById(
+"aiCount"
+).innerHTML =
+consultations.length * 3;
+
+document.getElementById(
+"adoptionBar"
+).style.width =
+Math.min(
+100,
+patients.length
+) + "%";
+
+document.getElementById(
+"engagementBar"
+).style.width =
+Math.min(
+100,
+consultations.length
+) + "%";
+
+document.getElementById(
+"retentionBar"
+).style.width =
+"82%";
+
+document.getElementById(
+"activityList"
+).innerHTML =
+
+consultations
+.slice(0,10)
+.map(c=>`
+
+<div class="activity">
+
+🦷 Consultation #${c.id}
+
+<br>
+
+Status:
+${c.status}
+
+</div>
+
+`).join("");
+
+document.getElementById(
+"aiInsights"
+).innerHTML =
+
+`
+<strong>
+Platform Summary
+</strong>
+
+<br><br>
+
+Patients Registered:
+${patients.length}
+
+<br>
+
+Consultations Completed:
+${consultations.filter(
+c=>c.status==="Completed"
+).length}
+
+<br>
+
+Appointments Scheduled:
+${appointments.length}
+
+<br>
+
+Dentists Available:
+${dentists.length}
+
+<br><br>
+
+TeleDent continues expanding
+digital dental access through
+remote consultations,
+clinical follow-up and
+AI-assisted patient support.
+
+`;
+
+}
+
+loadImpact();
+
+</script>
+
+<script src="ai-widget.js"></script>
+
+</body>
+
+</html>
