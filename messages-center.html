@@ -409,6 +409,10 @@ display:none;
 
 </style>
 
+<link
+rel="stylesheet"
+href="mobile.css">
+
 </head>
 
 <body>
@@ -770,6 +774,34 @@ currentConsultation
 
 <script src="ai-widget.js"></script>
 
+<script>
+
+const menuBtn =
+document.getElementById(
+"menuBtn"
+);
+
+const sidebar =
+document.querySelector(
+".sidebar"
+);
+
+if(
+menuBtn &&
+sidebar
+){
+
+menuBtn.onclick = ()=>{
+
+sidebar.classList.toggle(
+"active"
+);
+
+};
+
+}
+
+</script>
 </body>
 
 </html>

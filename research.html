@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+TeleDent Research Dashboard
+
+</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+background:#f4f8fc;
+}
+
+.header{
+
+background:
+linear-gradient(
+135deg,
+#0a4d8c,
+#1976d2
+);
+
+color:white;
+
+padding:35px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.container{
+
+max-width:1400px;
+
+margin:auto;
+
+padding:25px;
+
+}
+
+.stats{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:20px;
+
+margin-bottom:25px;
+
+}
+
+.card{
+
+background:white;
+
+padding:25px;
+
+border-radius:20px;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,.05);
+
+}
+
+.metric{
+
+font-size:40px;
+
+font-weight:bold;
+
+color:#1976d2;
+
+margin-top:10px;
+
+}
+
+.section{
+
+background:white;
+
+padding:25px;
+
+border-radius:20px;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,.05);
+
+margin-bottom:20px;
+
+}
+
+.section h3{
+
+color:#0a4d8c;
+
+margin-bottom:15px;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:20px;
+
+margin-bottom:20px;
+
+}
+
+.research-item{
+
+padding:12px;
+
+border-bottom:1px solid #eee;
+
+}
+
+.research-item:last-child{
+
+border-bottom:none;
+
+}
+
+.bar{
+
+height:18px;
+
+background:#1976d2;
+
+border-radius:20px;
+
+margin-top:5px;
+
+}
+
+.ai-box{
+
+background:#eef7ff;
+
+padding:20px;
+
+border-left:5px solid #1976d2;
+
+border-radius:12px;
+
+line-height:1.8;
+
+}
+
+.download{
+
+padding:12px 18px;
+
+background:#0a4d8c;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+margin-top:10px;
+
+}
+
+@media(max-width:900px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
+<link
+rel="stylesheet"
+href="mobile.css">
+
+</head>
+
+<body>
+    <button
+id="menuBtn">
+
+☰
+
+</button>
+
+<div class="header">
+
+<div>
+
+<h1>
+
+🔬 Research Dashboard
+
+</h1>
+
+<p>
+
+Clinical Research & Population Oral Health Insights
+
+</p>
+
+</div>
+
+<a href="dentist.html">
+
+<button
+class="download">
+
+← Dashboard
+
+</button>
+
+</a>
+
+<a href="analytics.html">
+
+<button class="download">
+
+📈 Analytics
+
+</button>
+
+</a>
+
+</div>
+
+<div class="container">
+
+<div class="stats">
+
+<div class="card">
+
+<h3>
+
+👥 Patients
+
+</h3>
+
+<div
+id="patientCount"
+class="metric">
+
+0
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+🦷 Consultations
+
+</h3>
+
+<div
+id="consultationCount"
+class="metric">
+
+0
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+📅 Appointments
+
+</h3>
+
+<div
+id="appointmentCount"
+class="metric">
+
+0
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+🤖 AI Interactions
+
+</h3>
+
+<div
+id="aiCount"
+class="metric">
+
+0
+
+</div>
+
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="section">
+
+<h3>
+
+🦷 Condition Distribution
+
+</h3>
+
+<div id="conditionDistribution">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>
+
+📈 Research Indicators
+
+</h3>
+
+<div class="research-item">
+
+Clinical Engagement
+
+<div
+class="bar"
+style="width:90%">
+
+</div>
+
+</div>
+
+<div class="research-item">
+
+Preventive Care
+
+<div
+class="bar"
+style="width:65%">
+
+</div>
+
+</div>
+
+<div class="research-item">
+
+Patient Follow-Up
+
+<div
+class="bar"
+style="width:78%">
+
+</div>
+
+</div>
+
+<div class="research-item">
+
+Digital Adoption
+
+<div
+class="bar"
+style="width:95%">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="section">
+
+<h3>
+
+🌍 Geographic Reach
+
+</h3>
+
+<div>
+
+District Coverage:
+30 Districts
+
+</div>
+
+<br>
+
+<div>
+
+National Reach:
+95%
+
+</div>
+
+<div
+class="bar"
+style="width:95%">
+
+</div>
+
+<br>
+
+<div>
+
+Rural Outreach:
+68%
+
+</div>
+
+<div
+class="bar"
+style="width:68%">
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>
+
+👨‍⚕️ Population Groups
+
+</h3>
+
+<div class="research-item">
+
+Children
+
+</div>
+
+<div class="research-item">
+
+Adolescents
+
+</div>
+
+<div class="research-item">
+
+Adults
+
+</div>
+
+<div class="research-item">
+
+Older Adults
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>
+
+📚 Academic Publications
+
+</h3>
+
+<div class="research-item">
+
+Tele-Dentistry Adoption in Rwanda
+
+</div>
+
+<div class="research-item">
+
+AI for Oral Healthcare Access
+
+</div>
+
+<div class="research-item">
+
+Community Oral Health Trends
+
+</div>
+
+<button class="download">
+
+📄 Download Research Report
+
+</button>
+
+</div>
+
+<div class="section">
+
+<h3>
+
+🏥 Public Health Findings
+
+</h3>
+
+<div id="findings">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>
+
+🤖 AI Research Summary
+
+</h3>
+
+<div
+id="researchSummary"
+class="ai-box">
+
+Generating AI report...
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const API =
+"https://teledentalrwanda.sangoblaise51.workers.dev";
+
+async function loadResearch(){
+
+const users =
+await fetch(
+API + "/users"
+).then(r=>r.json());
+
+const consultations =
+await fetch(
+API + "/consultations"
+).then(r=>r.json());
+
+const appointments =
+await fetch(
+API + "/appointments"
+).then(r=>r.json());
+
+const patients =
+users.filter(
+u => u.role === "patient"
+);
+
+document.getElementById(
+"patientCount"
+).innerHTML =
+patients.length;
+
+document.getElementById(
+"consultationCount"
+).innerHTML =
+consultations.length;
+
+document.getElementById(
+"appointmentCount"
+).innerHTML =
+appointments.length;
+
+document.getElementById(
+"aiCount"
+).innerHTML =
+
+consultations.length * 3;
+
+let pain = 0;
+let swelling = 0;
+let bleeding = 0;
+let decay = 0;
+
+consultations.forEach(c=>{
+
+const text =
+(c.symptoms || "")
+.toLowerCase();
+
+if(text.includes("pain"))
+pain++;
+
+if(text.includes("swelling"))
+swelling++;
+
+if(text.includes("bleeding"))
+bleeding++;
+
+if(
+text.includes("decay") ||
+text.includes("cavity")
+)
+decay++;
+
+});
+
+document.getElementById(
+"conditionDistribution"
+).innerHTML =
+
+`
+
+<div class="research-item">
+
+Tooth Pain:
+${pain}
+
+</div>
+
+<div class="research-item">
+
+Swelling:
+${swelling}
+
+</div>
+
+<div class="research-item">
+
+Bleeding Gums:
+${bleeding}
+
+</div>
+
+<div class="research-item">
+
+Dental Decay:
+${decay}
+
+</div>
+
+`;
+
+document.getElementById(
+"findings"
+).innerHTML =
+
+`
+
+<div class="research-item">
+
+Most common complaint:
+Tooth Pain
+
+</div>
+
+<div class="research-item">
+
+Most active service:
+Teleconsultation
+
+</div>
+
+<div class="research-item">
+
+Follow-up appointments
+improve treatment continuity.
+
+</div>
+
+`;
+
+document.getElementById(
+"researchSummary"
+).innerHTML =
+
+`
+
+<strong>
+
+Research Summary
+
+</strong>
+
+<br><br>
+
+Patients:
+${patients.length}
+
+<br>
+
+Consultations:
+${consultations.length}
+
+<br>
+
+Appointments:
+${appointments.length}
+
+<br><br>
+
+AI analysis suggests
+tooth pain and preventive
+care remain priority areas.
+
+<br><br>
+
+Recommendation:
+
+Expand awareness campaigns,
+community screening programs
+and preventive oral health
+interventions.
+
+`;
+
+}
+
+loadResearch();
+
+</script>
+
+<script src="ai-widget.js"></script>
+
+<script>
+
+const menuBtn =
+document.getElementById(
+"menuBtn"
+);
+
+const sidebar =
+document.querySelector(
+".sidebar"
+);
+
+if(
+menuBtn &&
+sidebar
+){
+
+menuBtn.onclick = ()=>{
+
+sidebar.classList.toggle(
+"active"
+);
+
+};
+
+}
+
+</script>
+</body>
+
+</html>

@@ -387,6 +387,10 @@ font-size:16px;
 
 </style>
 
+<link
+rel="stylesheet"
+href="mobile.css">
+
 </head>
 
 <body>
@@ -966,6 +970,34 @@ Request Partnership Meeting
 
 </div>
 
+<script>
+
+const menuBtn =
+document.getElementById(
+"menuBtn"
+);
+
+const sidebar =
+document.querySelector(
+".sidebar"
+);
+
+if(
+menuBtn &&
+sidebar
+){
+
+menuBtn.onclick = ()=>{
+
+sidebar.classList.toggle(
+"active"
+);
+
+};
+
+}
+
+</script>
 </body>
 
 </html>

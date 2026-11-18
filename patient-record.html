@@ -33,317 +33,277 @@ linear-gradient(
 135deg,
 #0a4d8c,
 #1976d2
+
 );
-
 color:white;
-
 padding:30px;
-
 display:flex;
-
 justify-content:space-between;
-
 align-items:center;
-
 }
 
 .back-btn{
-
 background:white;
-
 color:#0a4d8c;
-
 padding:12px 18px;
-
 border:none;
-
 border-radius:10px;
-
 cursor:pointer;
-
 font-weight:bold;
-
 }
 
 .container{
-
 max-width:1400px;
-
 margin:auto;
-
 padding:25px;
-
 }
 
 .profile-section{
-
 background:white;
-
 padding:30px;
-
 border-radius:20px;
-
 display:flex;
-
 gap:25px;
-
 align-items:center;
-
-box-shadow:
-0 10px 25px rgba(0,0,0,.06);
-
+box-shadow:0 10px 25px rgba(0,0,0,.06);
 margin-bottom:25px;
-
 }
 
 .avatar{
-
 width:130px;
-
 height:130px;
-
 border-radius:50%;
-
 background:#eef4ff;
-
 display:flex;
-
 justify-content:center;
-
 align-items:center;
-
 font-size:50px;
-
 border:4px solid #0a4d8c;
-
 }
 
 .patient-details h2{
-
 color:#0a4d8c;
-
 margin-bottom:10px;
-
 }
 
 .badge{
-
 display:inline-block;
-
 margin-top:10px;
-
 background:#e8f7ee;
-
 color:#25c26e;
-
 padding:8px 12px;
-
 border-radius:30px;
-
 font-weight:bold;
-
 }
 
 .stats{
-
 display:grid;
-
 grid-template-columns:
 repeat(auto-fit,minmax(200px,1fr));
-
 gap:20px;
-
 margin-bottom:25px;
-
 }
 
 .stat-card{
-
 background:white;
-
 padding:20px;
-
 border-radius:20px;
-
 box-shadow:
 0 5px 15px rgba(0,0,0,.05);
-
 }
 
 .stat-card h3{
-
 color:#0a4d8c;
-
 margin-bottom:10px;
-
 }
 
 .grid{
-
 display:grid;
-
 grid-template-columns:
 1fr 1fr;
-
 gap:20px;
-
 margin-bottom:20px;
-
 }
 
 .section{
-
 background:white;
-
 padding:25px;
-
 border-radius:20px;
-
 box-shadow:
 0 5px 15px rgba(0,0,0,.05);
-
 }
 
 .section h3{
-
 margin-bottom:15px;
-
 color:#0a4d8c;
-
 }
 
 .record{
-
 padding:15px;
-
 border-bottom:1px solid #eee;
-
 }
 
 .record:last-child{
-
 border-bottom:none;
-
 }
 
 .record-date{
-
 font-size:13px;
-
 color:#777;
-
 margin-top:5px;
-
 }
 
 .photo-grid{
-
 display:grid;
-
 grid-template-columns:
 repeat(auto-fit,minmax(150px,1fr));
-
 gap:15px;
-
 }
 
 .photo-grid img{
-
 width:100%;
-
 height:180px;
-
 object-fit:cover;
-
 border-radius:12px;
-
 border:1px solid #ddd;
-
 }
 
 .ai-summary{
-
 background:#eef7ff;
-
 padding:20px;
-
 border-left:5px solid #0a4d8c;
-
 border-radius:12px;
-
 line-height:1.8;
-
 }
 
 .timeline{
-
 position:relative;
-
 }
 
 .primary{
-
 background:#0a4d8c;
-
 color:white;
-
 padding:10px 14px;
-
 border:none;
-
 border-radius:10px;
-
 cursor:pointer;
-
 margin-right:10px;
-
 }
 
 .success{
-
 background:#25c26e;
-
 color:white;
-
 padding:10px 14px;
-
 border:none;
-
 border-radius:10px;
-
 cursor:pointer;
-
 }
 
 .timeline-item{
-
 padding:10px 0 10px 20px;
-
 border-left:3px solid #1976d2;
-
 margin-left:10px;
+}
+
+.health-bar{
+height:12px;
+background:#e5e5e5;
+border-radius:30px;
+overflow:hidden;
+margin-top:10px;
+}
+
+.health-fill{
+height:100%;
+width:0%;
+background:
+linear-gradient(
+90deg,
+#25c26e,
+#0a4d8c
+);
+transition:.5s;
+}
+
+.alert{
+padding:15px;
+margin-bottom:10px;
+border-radius:12px;
+font-weight:bold;
+}
+
+.alert-warning{
+background:#fff0d5;
+color:#ff9800;
+}
+
+.alert-danger{
+background:#ffe4e4;
+color:#d90000;
+}
+
+.alert-success{
+background:#e8f7ee;color:#25c26e;
+}
+
+.assessment-box{
+
+background:#f4f9ff;
+
+padding:20px;
+
+border-left:5px solid #1976d2;
+
+border-radius:15px;
+
+line-height:2;
+
+}
+
+.condition{
+
+display:inline-block;
+
+background:#eef7ff;
+
+padding:8px 12px;
+
+border-radius:20px;
+
+margin:5px;
+
+}
+
+.recommendation{
+
+background:#fff8e8;
+
+padding:12px;
+
+border-radius:10px;
+
+margin-top:10px;
 
 }
 
 @media(max-width:900px){
 
 .grid{
-
 grid-template-columns:1fr;
-
 }
 
 .profile-section{
-
 flex-direction:column;
-
 text-align:center;
-
 }
 
 }
 
 </style>
+
+<link
+rel="stylesheet"
+href="mobile.css">
 
 </head>
 
@@ -369,26 +329,6 @@ Clinical Dental Information
 class="back-btn">
 
 ← Patients
-
-</button>
-
-</a>
-
-<a href="messages-center.html?patient=${patient.id}">
-
-<button class="primary">
-
-💬 Messages
-
-</button>
-
-</a>
-
-<a href="dentist-appointments.html?patient=${patient.id}">
-
-<button class="success">
-
-📅 Appointments
 
 </button>
 
@@ -451,6 +391,45 @@ Status
 <p>
 ✅ Active
 </p>
+
+</div>
+
+<div class="stat-card">
+
+<h3>
+🚨 AI Risk
+</h3>
+
+<p id="riskScore">
+
+Loading...
+
+</p>
+
+</div>
+
+<div class="stat-card">
+
+<h3>
+🦷 Oral Health Score
+</h3>
+
+<p id="oralHealthScore">
+
+100
+
+</p>
+
+<div
+class="health-bar">
+
+<div
+id="healthScoreBar"
+class="health-fill">
+
+</div>
+
+</div>
 
 </div>
 
@@ -534,8 +513,39 @@ Loading...
 
 <h3>
 
-🤖 TeleDent AI Summary
+🔔 Follow-Up Alerts
 
+</h3>
+
+<div
+id="followUpAlerts">
+
+Checking patient status...
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>
+🧠 AI Clinical Assessment
+</h3>
+
+<div id="clinicalAssessment">
+
+Analyzing patient history...
+
+</div>
+
+</div>
+
+<br>
+
+<div class="section">
+
+<h3>
+🤖 TeleDent AI Summary
 </h3>
 
 <div
@@ -584,6 +594,59 @@ data.consultations || [];
 const appointments =
 data.appointments || [];
 
+// Build a single symptoms string.
+// Use this variable everywhere. 
+
+// Oral Health Score
+let oralHealthScore = 100;
+
+oralHealthScore -= consultations.length * 2;
+
+if(symptomsText.includes("pain")){
+oralHealthScore -= 10;
+}
+
+if(symptomsText.includes("swelling")){
+oralHealthScore -= 20;
+}
+
+if(symptomsText.includes("infection")){
+oralHealthScore -= 25;
+}
+
+oralHealthScore =
+Math.max(0, oralHealthScore);
+
+if(
+symptomsText.includes("pain")
+){
+
+oralHealthScore -= 10;
+
+}
+
+if(
+symptomsText.includes("swelling")
+){
+
+oralHealthScore -= 20;
+
+}
+
+if(
+symptomsText.includes("infection")
+){
+
+oralHealthScore -= 25;
+
+}
+
+oralHealthScore =
+Math.max(
+0,
+oralHealthScore
+);
+
 document.getElementById(
 "patientProfile"
 ).innerHTML = `
@@ -630,7 +693,7 @@ ${patient.fullname}
 
 <br><br>
 
-<a href="messages-center.html">
+<a href="messages-center.html?patient=${patient.id}">
 
 <button class="primary">
 
@@ -640,7 +703,7 @@ ${patient.fullname}
 
 </a>
 
-<a href="dentist-appointments.html">
+<a href="dentist-appointments.html?patient=${patient.id}">
 
 <button class="success">
 
@@ -675,6 +738,18 @@ document.getElementById(
 "imageCount"
 ).innerHTML =
 images.length;
+
+document.getElementById(
+"oralHealthScore"
+).innerHTML =
+
+oralHealthScore + "/100";
+
+document.getElementById(
+"healthScoreBar"
+).style.width =
+
+oralHealthScore + "%";
 
 document.getElementById(
 "consultationHistory"
@@ -741,32 +816,85 @@ ${a.clinic_address}
 
 "No appointments found";
 
+let timeline = "";
+
+consultations.forEach(c => {
+
+timeline += `
+
+<div class="timeline-item">
+
+<strong>
+
+🦷 Consultation #${c.id}
+
+</strong>
+
+<br>
+
+Status:
+${c.status}
+
+<br>
+
+Symptoms:
+${c.symptoms}
+
+</div>
+
+`;
+
+});
+
+appointments.forEach(a => {
+
+timeline += `
+
+<div class="timeline-item">
+
+<strong>
+
+📅 Appointment
+
+</strong>
+
+<br>
+
+${a.appointment_date}
+
+<br>
+
+${a.clinic_name}
+
+</div>
+
+`;
+
+});
+
 document.getElementById(
 "timeline"
 ).innerHTML =
 
-consultations.map(c=>`
+timeline ||
 
-<div class="timeline-item">
+`
 
-Consultation #${c.id}
+<div class="record">
 
-<br>
-
-${c.status}
+No clinical activity
+recorded yet.
 
 </div>
 
-`).join("");
+`;
+
 
 document.getElementById(
 "photoGallery"
 ).innerHTML =
-
 images.length ?
-
 images.map(i=>`
-
 <img
 src="${i.photo_url}">
 
@@ -783,12 +911,257 @@ consultations[0].symptoms
 :
 "No recent issues";
 
+let risk =
+"🟢 Low";
+
+const symptomsText =
+consultations
+.map(c => c.symptoms || "")
+.join(" ")
+.toLowerCase();
+
+if(
+symptomsText.includes("swelling")
+||
+symptomsText.includes("infection")
+){
+
+risk =
+"🔴 High";
+
+}
+else if(
+symptomsText.includes("pain")
+){
+
+risk =
+"🟠 Medium";
+
+}
+
+document.getElementById(
+"riskScore"
+).innerHTML =
+risk;
+
+let alerts = [];
+
+if(
+consultations.length > 5
+){
+
+alerts.push(`
+
+<div
+class="alert alert-warning">
+
+Patient has multiple consultations.
+Review long-term treatment plan.
+
+</div>
+
+`);
+
+}
+
+if(
+symptomsText.includes("infection")
+){
+
+alerts.push(`
+
+<div
+class="alert alert-danger">
+
+Possible history of infection.
+Urgent follow-up recommended.
+
+</div>
+
+`);
+
+}
+
+if(
+appointments.length === 0
+&&
+consultations.length > 0
+){
+
+alerts.push(`
+
+<div
+class="alert alert-warning">
+
+No appointment recorded.
+Schedule clinical follow-up.
+
+</div>
+
+`);
+
+}
+
+if(
+alerts.length === 0
+){
+
+alerts.push(`
+
+<div
+class="alert alert-success">
+
+Patient currently shows
+no outstanding follow-up alerts.
+
+</div>
+
+`);
+
+}
+
+document.getElementById(
+"followUpAlerts"
+).innerHTML =
+
+alerts.join("");
+
+let conditions = [];
+
+if(
+symptomsText.includes("pain")
+){
+conditions.push(
+"Dental Caries"
+);
+}
+
+if(
+symptomsText.includes("swelling")
+){
+conditions.push(
+"Dental Abscess"
+);
+}
+
+if(
+symptomsText.includes("bleeding")
+){
+conditions.push(
+"Gingivitis"
+);
+}
+
+if(
+symptomsText.includes("infection")
+){
+conditions.push(
+"Periodontal Disease"
+);
+}
+
+if(
+conditions.length === 0
+){
+conditions.push(
+"Requires Clinical Review"
+);
+}
+
+const confidence =
+
+risk === "🔴 High"
+? 92
+
+: risk === "🟠 Medium"
+? 81
+
+: 70;
+
+document.getElementById(
+"clinicalAssessment"
+).innerHTML = `
+
+<div class="assessment-box">
+
+<strong>
+
+Current Risk:
+
+</strong>
+
+${risk}
+
+<br><br>
+
+<strong>
+
+Possible Conditions
+
+</strong>
+
+<br><br>
+
+${conditions.map(c=>`
+
+<span class="condition">
+
+${c}
+
+</span>
+
+`).join("")}
+
+<br><br>
+
+<div class="recommendation">
+
+✅ Schedule Clinical Review
+
+</div>
+
+<div class="recommendation">
+
+✅ Monitor Symptoms
+
+</div>
+
+<div class="recommendation">
+
+✅ Maintain Oral Hygiene
+
+</div>
+
+<br>
+
+<strong>
+
+Confidence:
+
+</strong>
+
+${confidence}%
+
+</div>
+
+`;
+
 document.getElementById(
 "aiSummary"
 ).innerHTML = `
 
 <strong>
 Patient Overview
+
+<br><br>
+
+AI Risk:
+${risk}
+
+<br>
+
+Oral Health Score:
+${oralHealthScore}/100
 </strong>
 
 <br><br>
@@ -829,6 +1202,34 @@ loadPatientRecord();
 
 <script src="ai-widget.js"></script>
 
+<script>
+
+const menuBtn =
+document.getElementById(
+"menuBtn"
+);
+
+const sidebar =
+document.querySelector(
+".sidebar"
+);
+
+if(
+menuBtn &&
+sidebar
+){
+
+menuBtn.onclick = ()=>{
+
+sidebar.classList.toggle(
+"active"
+);
+
+};
+
+}
+
+</script>
 </body>
 
 </html>

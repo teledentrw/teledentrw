@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+My Health Record
+
+</title>
+
+<link rel="stylesheet" href="mobile.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+background:#f4f8fc;
+}
+
+.header{
+
+background:
+linear-gradient(
+135deg,
+#0a4d8c,
+#1976d2
+);
+
+padding:25px;
+
+color:white;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.container{
+
+max-width:1400px;
+
+margin:auto;
+
+padding:25px;
+
+}
+
+.card{
+
+background:white;
+
+padding:25px;
+
+border-radius:20px;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,.05);
+
+margin-bottom:20px;
+
+}
+
+.stats{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:20px;
+
+margin-bottom:20px;
+
+}
+
+.stat-card{
+
+background:white;
+
+padding:20px;
+
+border-radius:20px;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,.05);
+
+}
+
+.health-circle{
+
+font-size:42px;
+
+font-weight:bold;
+
+color:#1976d2;
+
+}
+
+.timeline-item{
+
+padding:15px;
+
+border-left:4px solid #1976d2;
+
+margin-bottom:12px;
+
+background:white;
+
+border-radius:8px;
+
+}
+
+.alert{
+
+padding:15px;
+
+border-radius:12px;
+
+margin-bottom:10px;
+
+font-weight:bold;
+
+}
+
+.success{
+
+background:#e8f7ee;
+
+color:#25c26e;
+
+}
+
+.warning{
+
+background:#fff4d6;
+
+color:#ff9800;
+
+}
+
+.photo-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(160px,1fr));
+
+gap:15px;
+
+}
+
+.photo-grid img{
+
+width:100%;
+
+height:180px;
+
+object-fit:cover;
+
+border-radius:12px;
+
+}
+
+.badge{
+
+display:inline-block;
+
+padding:8px 12px;
+
+margin:5px;
+
+border-radius:20px;
+
+background:#eef7ff;
+
+color:#0a4d8c;
+
+}
+
+.btn{
+
+padding:12px 18px;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+.primary{
+
+background:#0a4d8c;
+
+color:white;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div>
+
+<h1>
+
+📁 My Health Record
+
+</h1>
+
+<p>
+
+View your complete oral health history
+
+</p>
+
+</div>
+
+<a href="patient.html">
+
+<button class="btn primary">
+
+← Dashboard
+
+</button>
+
+</a>
+
+</div>
+
+<div class="container">
+
+<div class="stats">
+
+<div class="stat-card">
+
+<h3>
+
+🦷 Oral Health Score
+
+</h3>
+
+<div
+class="health-circle"
+id="healthScore">
+
+100
+
+</div>
+
+</div>
+
+<div class="stat-card">
+
+<h3>
+
+📅 Appointments
+
+</h3>
+
+<div
+class="health-circle"
+id="appointmentCount">
+
+0
+
+</div>
+
+</div>
+
+<div class="stat-card">
+
+<h3>
+
+🦷 Consultations
+
+</h3>
+
+<div
+class="health-circle"
+id="consultationCount">
+
+0
+
+</div>
+
+</div>
+
+<div class="stat-card">
+
+<h3>
+
+🤖 AI Risk
+
+</h3>
+
+<div
+class="health-circle"
+id="riskLevel">
+
+🟢
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>
+
+🤖 AI Health Summary
+
+</h2>
+
+<br>
+
+<div id="healthSummary">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>
+
+🔔 Follow-Up Alerts
+
+</h2>
+
+<br>
+
+<div id="alerts">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>
+
+🛤 Health Journey
+
+</h2>
+
+<br>
+
+<div id="timeline">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>
+
+🦷 Consultation History
+
+</h2>
+
+<br>
+
+<div id="consultations">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>
+
+📅 Appointment History
+
+</h2>
+
+<br>
+
+<div id="appointments">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>
+
+📷 Dental Images
+
+</h2>
+
+<br>
+
+<div
+class="photo-grid"
+id="photos">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>
+
+🏅 Health Achievements
+
+</h2>
+
+<br>
+
+<div id="achievements">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<button
+class="btn primary">
+
+📄 Download My Health Report
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const user =
+JSON.parse(
+localStorage.getItem(
+"user"
+)
+);
+
+const API =
+"https://teledentalrwanda.sangoblaise51.workers.dev";
+
+async function loadRecord(){
+
+const res =
+await fetch(
+API + "/my-consultations",
+{
+method:"POST",
+headers:{
+"Content-Type":
+"application/json"
+},
+body:JSON.stringify({
+patient_id:user.id
+})
+}
+);
+
+const consultations =
+await res.json();
+
+document.getElementById(
+"consultationCount"
+).innerHTML =
+consultations.length;
+
+let symptomsText =
+consultations
+.map(x=>x.symptoms||"")
+.join(" ")
+.toLowerCase();
+
+let score = 100;
+
+score -= consultations.length * 2;
+
+if(symptomsText.includes("pain"))
+score -= 10;
+
+if(symptomsText.includes("swelling"))
+score -= 20;
+
+if(symptomsText.includes("infection"))
+score -= 25;
+
+score = Math.max(0,score);
+
+document.getElementById(
+"healthScore"
+).innerHTML =
+score;
+
+let risk =
+"🟢 Low";
+
+if(
+symptomsText.includes("infection")
+||
+symptomsText.includes("swelling")
+){
+
+risk =
+"🔴 High";
+
+}
+else if(
+symptomsText.includes("pain")
+){
+
+risk =
+"🟠 Medium";
+
+}
+
+document.getElementById(
+"riskLevel"
+).innerHTML =
+risk;
+
+document.getElementById(
+"healthSummary"
+).innerHTML =
+
+`
+
+Your oral health score is
+
+<strong>${score}/100</strong>.
+
+<br><br>
+
+Continue brushing twice daily,
+attending appointments and
+following professional advice.
+
+`;
+
+document.getElementById(
+"consultations"
+).innerHTML =
+
+consultations.map(c=>`
+
+<div class="timeline-item">
+
+🦷 Consultation #${c.id}
+
+<br>
+
+${c.symptoms}
+
+<br>
+
+Status:
+${c.status}
+
+</div>
+
+`).join("");
+
+document.getElementById(
+"timeline"
+).innerHTML =
+
+consultations.map(c=>`
+
+<div class="timeline-item">
+
+✅ Consultation Submitted
+
+<br>
+
+${c.symptoms}
+
+</div>
+
+`).join("");
+
+const photos =
+consultations.filter(
+c=>c.photo_url
+);
+
+document.getElementById(
+"photos"
+).innerHTML =
+
+photos.length
+
+?
+
+photos.map(p=>`
+
+<img
+src="${p.photo_url}">
+
+`).join("")
+
+:
+
+"No uploaded images";
+
+let alerts = [];
+
+if(
+consultations.length > 5
+){
+
+alerts.push(
+'<div class="alert warning">Routine dental review recommended.</div>'
+);
+
+}
+
+if(
+alerts.length===0
+){
+
+alerts.push(
+'<div class="alert success">No active health alerts.</div>'
+);
+
+}
+
+document.getElementById(
+"alerts"
+).innerHTML =
+
+alerts.join("");
+
+let achievements = [];
+
+if(
+consultations.length >= 1
+){
+
+achievements.push(
+"🏅 First Consultation"
+);
+
+}
+
+if(
+consultations.length >= 5
+){
+
+achievements.push(
+"🏅 Active Health User"
+);
+
+}
+
+document.getElementById(
+"achievements"
+).innerHTML =
+
+achievements.map(a=>
+
+`<span class="badge">${a}</span>`
+
+).join("");
+
+}
+
+loadRecord();
+
+</script>
+
+</body>
+
+</html>

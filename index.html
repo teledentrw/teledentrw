@@ -381,6 +381,10 @@ font-size:16px;
 
 </style>
 
+<link
+rel="stylesheet"
+href="mobile.css">
+
 </head>
 
 <body>
@@ -1056,5 +1060,33 @@ Read More
 
 <script src="ai-widget.js"></script>
 
+<script>
+
+const menuBtn =
+document.getElementById(
+"menuBtn"
+);
+
+const sidebar =
+document.querySelector(
+".sidebar"
+);
+
+if(
+menuBtn &&
+sidebar
+){
+
+menuBtn.onclick = ()=>{
+
+sidebar.classList.toggle(
+"active"
+);
+
+};
+
+}
+
+</script>
 </body>
 </html>

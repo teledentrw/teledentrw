@@ -1,0 +1,367 @@
+/* ==================================
+   TELEDENT GLOBAL MOBILE STYLES
+================================== */
+
+@media (max-width: 768px){
+
+body{
+
+overflow-x:hidden;
+
+}
+
+/* DASHBOARD */
+
+.dashboard{
+
+flex-direction:column !important;
+
+}
+
+.content{
+
+padding:15px !important;
+
+}
+
+/* SIDEBAR */
+
+.sidebar{
+
+width:100% !important;
+
+position:relative !important;
+
+font-size:16px !important;
+
+padding:10px !important;
+
+border-right:none !important;
+
+}
+
+.sidebar h2{
+
+font-size:24px !important;
+
+text-align:center;
+
+}
+
+.sidebar a{
+
+font-size:16px !important;
+
+padding:12px !important;
+
+}
+
+/* PROFILE CARDS */
+
+.profile-section,
+.dentist-profile-card{
+
+flex-direction:column !important;
+
+text-align:center;
+
+}
+
+.avatar,
+.dentist-avatar{
+
+width:110px !important;
+
+height:110px !important;
+
+margin:auto;
+
+}
+
+.patient-details h2,
+.dentist-details h2{
+
+font-size:24px !important;
+
+}
+
+/* HEADERS */
+
+.header{
+
+flex-direction:column !important;
+
+text-align:center !important;
+
+gap:15px !important;
+
+padding:20px !important;
+
+}
+
+.header h1{
+
+font-size:28px !important;
+
+}
+
+/* STATS */
+
+.stats{
+
+grid-template-columns:1fr !important;
+
+}
+
+/* CARDS */
+
+.cards{
+
+grid-template-columns:1fr !important;
+
+}
+
+.summary-card,
+.stat-card,
+.card{
+
+width:100% !important;
+
+}
+
+/* GRID LAYOUTS */
+
+.grid{
+
+grid-template-columns:1fr !important;
+
+}
+
+.patient-grid,
+.consultation-grid,
+.appointments-grid,
+.partner-grid,
+.package-grid,
+.report-list,
+.sdg-grid{
+
+grid-template-columns:1fr !important;
+
+}
+
+/* CONSULTATION CARD */
+
+.consultation-card{
+
+width:100% !important;
+
+}
+
+.consultation-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:10px;
+
+}
+
+/* BUTTONS */
+
+.actions{
+
+flex-direction:column;
+
+}
+
+.actions button{
+
+width:100%;
+
+}
+
+/* FORMS */
+
+input,
+select,
+textarea{
+
+width:100% !important;
+
+}
+
+/* TOOLBARS */
+
+.toolbar{
+
+flex-direction:column !important;
+
+}
+
+.toolbar input,
+.toolbar select{
+
+width:100% !important;
+
+}
+
+/* CHAT PAGE */
+
+.container{
+
+flex-direction:column !important;
+
+}
+
+.chat-area{
+
+width:100% !important;
+
+}
+
+.info-panel{
+
+width:100% !important;
+
+border-left:none !important;
+
+margin-top:15px;
+
+}
+
+/* MESSAGE BUBBLES */
+
+.message{
+
+max-width:90% !important;
+
+}
+
+/* APPOINTMENT MODAL */
+
+.appointment-modal{
+
+width:95% !important;
+
+margin:20px auto !important;
+
+}
+
+/* MAP */
+
+.map,
+.map-placeholder{
+
+height:200px !important;
+
+font-size:20px !important;
+
+}
+
+/* HERO */
+
+.hero{
+
+padding:20px !important;
+
+}
+
+.hero h2{
+
+font-size:28px !important;
+
+}
+
+/* METRICS */
+
+.metric-number,
+.metric{
+
+font-size:32px !important;
+
+}
+
+/* PARTNER PAGE */
+
+.cta{
+
+padding:25px !important;
+
+}
+
+}
+
+/* ==================================
+   MOBILE SIDEBAR TOGGLE
+================================== */
+
+#menuBtn{
+
+display:none;
+
+}
+
+@media (max-width:768px){
+
+#menuBtn{
+
+display:block;
+
+position:fixed;
+
+top:15px;
+
+left:15px;
+
+z-index:99999;
+
+background:#0a4d8c;
+
+color:white;
+
+border:none;
+
+padding:12px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+box-shadow:
+0 4px 10px rgba(0,0,0,.25);
+
+}
+
+.sidebar{
+
+position:fixed !important;
+
+left:-100%;
+
+top:0;
+
+height:100%;
+
+width:280px !important;
+
+background:white;
+
+z-index:9999;
+
+overflow-y:auto;
+
+transition:.3s;
+
+box-shadow:
+0 0 20px rgba(0,0,0,.2);
+
+}
+
+.sidebar.active{
+
+left:0;
+
+}
+
+}

@@ -195,9 +195,19 @@ width:100%;
 
 </style>
 
+<link
+rel="stylesheet"
+href="mobile.css">
+
 </head>
 
 <body>
+    <button
+id="menuBtn">
+
+☰
+
+</button>
 
 <div class="dashboard">
 
@@ -227,8 +237,16 @@ width:100%;
 💬 Messages Center
 </a>
 
+<a href="analytics.html">
+📈 Analytics
+</a>
+
+<a href="research.html">
+🔬 Research
+</a>
+
 <a href="impact-dashboard.html">
-📈 Impact Dashboard
+🌍 Impact Dashboard
 </a>
 
 <a href="partners-and-sponsors.html">
@@ -387,6 +405,56 @@ View Consultations
 
 </div>
 
+<div class="summary-card">
+
+<h3>
+📈 Research Insights
+</h3>
+
+<p>
+
+View oral health analytics
+and AI-generated reports.
+
+</p>
+
+<a href="research.html">
+
+<button class="primary">
+
+Open Research
+
+</button>
+
+</a>
+
+</div>
+
+<div class="summary-card">
+
+<h3>
+🌍 Platform Impact
+</h3>
+
+<p>
+
+Patients served,
+district coverage,
+and sponsor metrics.
+
+</p>
+
+<a href="impact-dashboard.html">
+
+<button class="primary">
+
+View Impact
+
+</button>
+
+</a>
+
+</div>
 </div>
 
 <script>
@@ -618,6 +686,33 @@ loadCases();
 
 <script src="ai-widget.js"></script>
 
-</body>
+<script>
+
+const menuBtn =
+document.getElementById(
+"menuBtn"
+);
+
+const sidebar =
+document.querySelector(
+".sidebar"
+);
+
+if(
+menuBtn &&
+sidebar
+){
+
+menuBtn.onclick = ()=>{
+
+sidebar.classList.toggle(
+"active"
+);
+
+};
+
+}
+
+</script></body>
 
 </html>

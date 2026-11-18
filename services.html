@@ -195,33 +195,21 @@ font-size:34px;
 @media(max-width:900px){
 
 header{
-
 flex-direction:column;
-
 gap:15px;
-
 padding:20px;
-
 }
 
 nav{
-
 display:flex;
-
 flex-wrap:wrap;
-
 justify-content:center;
-
 gap:10px;
-
 }
 
 nav a{
-
 margin:0;
-
 font-size:14px;
-
 }
 
 .hero{
@@ -319,58 +307,52 @@ font-size:28px;
 .hero p{
 
 font-size:16px;
-
 line-height:1.7;
-
 }
 
 .section h2{
-
 font-size:26px;
-
 }
 
 input,
 select{
-
 padding:14px;
-
 font-size:16px;
-
 }
 
 .step{
-
 padding:16px;
-
 }
 
 .step p{
-
 font-size:13px;
-
 }
 
 .cta{
-
 padding:45px 15px;
-
 }
 
 footer{
-
 padding:30px 15px;
-
 font-size:14px;
-
 }
 
 }
 </style>
 
+<link
+rel="stylesheet"
+href="mobile.css">
+
 </head>
 
 <body>
+    <button
+id="menuBtn">
+
+☰
+
+</button>
 
 <header>
 
@@ -900,6 +882,34 @@ matchesCategory)
 
 <script src="ai-widget.js"></script>
 
+<script>
+
+const menuBtn =
+document.getElementById(
+"menuBtn"
+);
+
+const sidebar =
+document.querySelector(
+".sidebar"
+);
+
+if(
+menuBtn &&
+sidebar
+){
+
+menuBtn.onclick = ()=>{
+
+sidebar.classList.toggle(
+"active"
+);
+
+};
+
+}
+
+</script>
 </body>
 
 </html>

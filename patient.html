@@ -153,6 +153,54 @@ box-shadow:0 2px 10px rgba(0,0,0,.05);
 margin-bottom:20px;
 }
 
+.health-bar{
+height:12px;
+background:#e5e5e5;
+border-radius:20px;
+margin-top:10px;
+overflow:hidden;
+}
+
+.health-fill{
+width:0;
+height:100%;
+background:
+linear-gradient(
+90deg,
+#25c26e,
+#0a4d8c
+);
+
+transition:.5s;
+
+}
+
+.badge{
+display:inline-block;
+padding:8px 12px;
+margin:5px;
+border-radius:20px;
+background:#eef7ff;
+color:#0a4d8c;
+font-weight:bold;
+}
+
+.alert{
+padding:12px;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.alert-warning{
+background:#fff4d6;
+color:#ff9800;
+}
+
+.alert-success{
+background:#e8f7ee;
+color:#25c26e;
+}
+
 @media(max-width:900px){
 
 .dashboard{
@@ -167,49 +215,87 @@ width:100%;
 
 </style>
 
+<link
+rel="stylesheet"
+href="mobile.css">
+
 </head>
 
 <body>
+    <button
+id="menuBtn">
+
+☰
+
+</button>
 
 <div class="dashboard">
 
 <div class="sidebar">
 
 <h2>
-🦷 TeleDent Rwanda
+🦷 TeleDent
 </h2>
 
-<div class="menu-title">
+<div class="patient.html">
 Dashboard
 </div>
+
+<a href="dentist.html">
+📊 Dashboard
+</a>
+
+<a href="patient.html">
+🏠 Dashboard
+</a>
 
 <a href="consultation.html">
 ➕ New Consultation
 </a>
 
 <div class="menu-title">
-Records
+Health
 </div>
 
-<a href="medical-history.html">
-📁 Medical History
+<a href="my-record.html">
+📁 My Health Record
 </a>
 
 <a href="appointments.html">
 📅 Appointments
 </a>
 
-<a href="payment.html">
-💳 Payments
+<a href="messages.html">
+💬 Messages
+</a>
+
+<a href="notifications.html">
+🔔 Notifications
 </a>
 
 <div class="menu-title">
-Account
+Services
 </div>
 
 <a href="dentists.html">
 👨‍⚕️ Find a Dentist
 </a>
+
+<a href="payment.html">
+💳 Payments
+</a>
+
+<a href="ai-health-coach.html">
+🤖 AI Health Coach
+</a>
+
+<a href="achievements.html">
+🏆 Achievements
+</a>
+
+<div class="menu-title">
+Account
+</div>
 
 <a href="profile.html">
 👤 Profile
@@ -225,11 +311,15 @@ Account
 
 <div class="topbar">
 
+<div class="patient-profile-card">
+
 <h1 id="welcome"></h1>
 
 <p>
-Manage your consultations, payments,
-appointments and medical records.
+
+Track your oral health, appointments,
+consultations and recommendations.
+
 </p>
 
 </div>
@@ -239,46 +329,102 @@ appointments and medical records.
 <div class="summary-card">
 
 <h3>
-🦷 Cases
+🦷 Oral Health Score
 </h3>
 
-<div id="stats"></div>
+<h1 id="healthScore">
+100/100
+</h1>
+
+<div class="health-bar">
+
+<div
+id="healthFill"
+class="health-fill">
+
+</div>
+
+</div>
 
 </div>
 
 <div class="summary-card">
 
 <h3>
-📅 Appointments
+📅 My Appointments
 </h3>
 
 <p>
-Track your scheduled visits
+Upcoming visits and schedules
 </p>
+
+<a href="appointments.html">
+
+<button class="success">
+Open Appointments
+</button>
+
+</a>
 
 </div>
 
 <div class="summary-card">
 
 <h3>
-💳 Payments
+💬 Messages
 </h3>
 
 <p>
-Manage consultation payments
+Communicate with dentists
 </p>
+
+<a href="messages.html">
+
+<button class="success">
+Open Messages
+</button>
+
+</a>
 
 </div>
 
 <div class="summary-card">
 
 <h3>
-📁 Records
+🔔 Notifications
 </h3>
 
 <p>
-Access your medical history
+Messages, appointments and reminders
 </p>
+
+<a href="notifications.html">
+
+<button class="primary">
+Open Notifications
+</button>
+
+</a>
+
+</div>
+
+<div class="summary-card">
+
+<h3>
+📁 Health Record
+</h3>
+
+<p>
+View complete history
+</p>
+
+<a href="my-record.html">
+
+<button class="primary">
+Open Record
+</button>
+
+</a>
 
 </div>
 
@@ -294,11 +440,55 @@ Access your medical history
 
 </div>
 
+<div class="profile-card">
+
+<h3>
+🤖 TeleDent AI Health Coach
+</h3>
+
+<div id="healthCoach">
+
+Analyzing your oral health...
+
+</div>
+
+</div>
+
+<div class="profile-card">
+
+<h3>
+🏅 Health Achievements
+</h3>
+
+<div id="achievements">
+
+Loading achievements...
+
+</div>
+
+</div>
+
+<div class="profile-card">
+
+<h3>
+🔔 Follow-Up Alerts
+</h3>
+
+<div id="followUpAlerts">
+
+Checking follow-up requirements...
+
+</div>
+
+</div>
+
 <h2>
-Recent Consultations
+
+🦷 Recent Consultations
+
 </h2>
 
-<div id="consultations"></div>
+<div id="consultations">
 
 </div>
 
@@ -313,7 +503,7 @@ localStorage.getItem("user")
 
 if(
 !user ||
-user.role !== "patient"
+user.role.toLowerCase() !== "patient"
 ){
 
 location =
@@ -357,6 +547,54 @@ patient_id:user.id
 const data =
 await res.json();
 
+let healthScore = 100;
+
+healthScore -= data.length * 2;
+
+const symptomsText =
+
+data.map(x =>
+x.symptoms || ""
+)
+.join(" ")
+.toLowerCase();
+
+if(
+symptomsText.includes("pain")
+){
+healthScore -= 10;
+}
+
+if(
+symptomsText.includes("swelling")
+){
+healthScore -= 20;
+}
+
+if(
+symptomsText.includes("infection")
+){
+healthScore -= 25;
+}
+
+healthScore =
+Math.max(
+0,
+healthScore
+);
+
+document.getElementById(
+"healthScore"
+).innerHTML =
+
+healthScore + "/100";
+
+document.getElementById(
+"healthFill"
+).style.width =
+
+healthScore + "%";
+
 document.getElementById(
 "stats"
 ).innerHTML =
@@ -366,6 +604,128 @@ const consultations =
 document.getElementById(
 "consultations"
 );
+
+document.getElementById(
+"healthCoach"
+).innerHTML =
+
+`
+
+<span class="badge">
+
+🪥 Brush twice daily
+
+</span>
+
+<span class="badge">
+
+💧 Drink more water
+
+</span>
+
+<span class="badge">
+
+🥗 Reduce sugary foods
+
+</span>
+
+<span class="badge">
+
+📅 Attend scheduled appointments
+
+</span>
+
+`;
+
+let achievements = [];
+
+if(data.length >= 1){
+
+achievements.push(
+"🏅 First Consultation"
+);
+
+}
+
+if(data.length >= 5){
+
+achievements.push(
+"🏅 Active Patient"
+);
+
+}
+
+if(
+data.some(x => x.paid)
+){
+
+achievements.push(
+"🏅 Consultation Completed"
+);
+
+}
+
+document.getElementById(
+"achievements"
+).innerHTML =
+
+achievements.length
+
+?
+
+achievements.map(a =>
+
+`<span class="badge">${a}</span>`
+
+).join("")
+
+:
+
+"Start your oral health journey today.";
+
+let alerts = [];
+
+if(
+data.length > 5
+){
+
+alerts.push(
+
+'<div class="alert alert-warning">You have multiple consultations. Consider booking a routine checkup.</div>'
+
+);
+
+}
+
+if(
+!data.some(x => x.status === "Completed")
+){
+
+alerts.push(
+
+'<div class="alert alert-warning">Some consultations still need dentist review.</div>'
+
+);
+
+}
+
+if(
+alerts.length === 0
+){
+
+alerts.push(
+
+'<div class="alert alert-success">No outstanding follow-up alerts.</div>'
+
+);
+
+}
+
+document.getElementById(
+"followUpAlerts"
+).innerHTML =
+
+alerts.join("");
 
 consultations.innerHTML = "";
 
@@ -450,6 +810,128 @@ Pay Consultation
 
 `;
 
+document.getElementById(
+"healthCoach"
+).innerHTML =
+
+`
+
+<span class="badge">
+
+🪥 Brush twice daily
+
+</span>
+
+<span class="badge">
+
+💧 Drink more water
+
+</span>
+
+<span class="badge">
+
+🥗 Reduce sugary foods
+
+</span>
+
+<span class="badge">
+
+📅 Attend scheduled appointments
+
+</span>
+
+`;
+
+let achievements = [];
+
+if(data.length >= 1){
+
+achievements.push(
+"🏅 First Consultation"
+);
+
+}
+
+if(data.length >= 5){
+
+achievements.push(
+"🏅 Active Patient"
+);
+
+}
+
+if(
+data.some(x => x.paid)
+){
+
+achievements.push(
+"🏅 Consultation Completed"
+);
+
+}
+
+document.getElementById(
+"achievements"
+).innerHTML =
+
+achievements.length
+
+?
+
+achievements.map(a =>
+
+`<span class="badge">${a}</span>`
+
+).join("")
+
+:
+
+"Start your oral health journey today.";
+
+let alerts = [];
+
+if(
+data.length > 5
+){
+
+alerts.push(
+
+'<div class="alert alert-warning">You have multiple consultations. Consider booking a routine checkup.</div>'
+
+);
+
+}
+
+if(
+!data.some(x => x.status === "Completed")
+){
+
+alerts.push(
+
+'<div class="alert alert-warning">Some consultations still need dentist review.</div>'
+
+);
+
+}
+
+if(
+alerts.length === 0
+){
+
+alerts.push(
+
+'<div class="alert alert-success">No outstanding follow-up alerts.</div>'
+
+);
+
+}
+
+document.getElementById(
+"followUpAlerts"
+).innerHTML =
+
+alerts.join("");
+
 });
 
 }
@@ -469,6 +951,34 @@ loadCases();
 
 <script src="ai-widget.js"></script>
 
+<script>
+
+const menuBtn =
+document.getElementById(
+"menuBtn"
+);
+
+const sidebar =
+document.querySelector(
+".sidebar"
+);
+
+if(
+menuBtn &&
+sidebar
+){
+
+menuBtn.onclick = ()=>{
+
+sidebar.classList.toggle(
+"active"
+);
+
+};
+
+}
+
+</script>
 </body>
 
 </html>
