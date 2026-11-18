@@ -27,20 +27,20 @@ min-height:100vh;
 }
 
 .sidebar{
-width:250px;
-background:white;
-border-right:1px solid #ddd;
-padding:20px;
+width:280px;
+background:#0a4d8c;
+border-right:1px solid white;
+padding: 18px;
+font-size:26px;
 }
 
 .sidebar h2{
-color:#0a4d8c;
 margin-bottom:30px;
 }
 
 .menu-title{
-font-size:12px;
-color:#888;
+font-size:18px;
+color:white;
 margin-top:20px;
 margin-bottom:10px;
 text-transform:uppercase;
@@ -48,32 +48,65 @@ text-transform:uppercase;
 
 .sidebar a{
 display:block;
-padding:12px;
-margin-bottom:8px;
+padding:12px 14px;
+margin-bottom:6px;
+font-size:15px;
 text-decoration:none;
-background:#f5f5f5;
+background:#0a4d8c;
 border-radius:8px;
-color:#333;
+color:white;
 }
 
 .sidebar a:hover{
-background:#dff3eb;
+background:#0a4d8c;
 }
 
 .content{
 flex:1;
-padding:25px;
+padding:18px;
 }
 
 .topbar{
-background:white;
-padding:20px;
-border-radius:12px;
-margin-bottom:20px;
-box-shadow:0 2px 10px rgba(0,0,0,.05);
+background:#0a4d8c;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:10px 0 25px 0;
+box-shadow:none;
 }
 
 .topbar h1{
+font-size:28px;
+font-weight:700;
+color:white;
+margin-bottom:6px;
+}
+
+.topbar p{
+font-size:18px;
+color:#e0e0e0;
+}
+
+.user-card{
+background:#0a4d8c;
+color:white;
+padding:12px 18px;
+border-radius:16px;
+display:flex;
+align-items:center;
+gap:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.avatar{
+width:46px;
+height:46px;
+border-radius:50%;
+background:#eef4ff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
 color:#0a4d8c;
 }
 
@@ -87,9 +120,9 @@ margin-bottom:25px;
 
 .summary-card{
 background:white;
-padding:20px;
+padding: 16px;
 border-radius:12px;
-box-shadow:0 2px 10px rgba(0,0,0,.05);
+box-shadow:0 1px 6px rgba(0,0,0,.05);
 }
 
 .summary-card h3{
@@ -99,7 +132,7 @@ color:#0a4d8c;
 
 .case-card{
 background:white;
-padding:20px;
+padding: 16px;
 border-radius:12px;
 margin-bottom:15px;
 box-shadow:0 2px 10px rgba(0,0,0,.05);
@@ -147,9 +180,9 @@ color:white;
 
 .profile-card{
 background:white;
-padding:20px;
+padding:18px;
 border-radius:12px;
-box-shadow:0 2px 10px rgba(0,0,0,.05);
+box-shadow:0 1px 6px rgba(0,0,0,.05);
 margin-bottom:20px;
 }
 
@@ -241,10 +274,6 @@ id="menuBtn">
 Dashboard
 </div>
 
-<a href="dentist.html">
-📊 Dashboard
-</a>
-
 <a href="patient.html">
 🏠 Dashboard
 </a>
@@ -311,16 +340,47 @@ Account
 
 <div class="topbar">
 
-<div class="patient-profile-card">
+<div>
 
 <h1 id="welcome"></h1>
 
 <p>
 
-Track your oral health, appointments,
-consultations and recommendations.
+Your oral health matters.
+ Use your TeleDent Rwanda patient portal to request consultations,
+ manage appointments and access your dental care information.
 
 </p>
+
+</div>
+
+<div class="user-card">
+
+<div class="avatar">
+
+S
+
+</div>
+
+<div>
+
+<strong id="topbarName">
+
+Patient
+
+</strong>
+
+<br>
+
+<span>
+
+Patient account
+
+</span>
+
+</div>
+
+</div>
 
 </div>
 
@@ -415,7 +475,7 @@ Open Notifications
 </h3>
 
 <p>
-View complete history
+View your complete oral health history
 </p>
 
 <a href="my-record.html">
@@ -426,6 +486,40 @@ Open Record
 
 </a>
 
+</div>
+
+<div class="summary-card">
+
+<h3>
+🤖 AI Health Coach
+</h3>
+
+<p>
+Get personalized health advice and recommendations
+</p>
+
+<a href="ai-health-coach.html">
+<button class="primary">
+Open AI Coach
+</button>
+</a>
+</div>
+
+<div class="summary-card">
+
+<h3>
+🏆 Achievements
+</h3>
+
+<p>
+View your accomplishments and milestones
+</p>
+
+<a href="achievements.html">
+<button class="success">
+View Achievements
+</button>
+</a>
 </div>
 
 </div>
@@ -527,6 +621,11 @@ document.getElementById(
 Name: ${user.fullname}<br>
 Role: ${user.role}
 `;
+
+document.getElementById(
+"topbarName"
+).innerHTML =
+user.fullname;
 
 async function loadCases(){
 
