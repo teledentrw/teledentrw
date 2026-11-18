@@ -66,6 +66,9 @@ flex:1;
 padding:18px;
 }
 
+@media(max-width:768px){}
+
+
 .topbar{
 background:#0a4d8c;
 display:flex;
@@ -85,6 +88,17 @@ margin-bottom:6px;
 .topbar p{
 font-size:18px;
 color:#e0e0e0;
+line-height:1.2;
+}
+
+@media(max-width:768px){
+
+.topbar h1{
+
+font-size:18px;
+
+}
+
 }
 
 .user-card{
@@ -244,6 +258,16 @@ flex-direction:column;
 width:100%;
 }
 
+@media(max-width:768px){
+
+.topbar h1{
+
+font-size:18px;
+
+}
+
+}
+
 }
 
 </style>
@@ -270,7 +294,7 @@ id="menuBtn">
 🦷 TeleDent
 </h2>
 
-<div class="patient.html">
+<div class="menu-title">
 Dashboard
 </div>
 
@@ -693,11 +717,6 @@ document.getElementById(
 ).style.width =
 
 healthScore + "%";
-
-document.getElementById(
-"stats"
-).innerHTML =
-data.length;
 
 const consultations =
 document.getElementById(
