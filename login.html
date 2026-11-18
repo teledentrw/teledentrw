@@ -314,6 +314,17 @@ const API =
 
 async function login(){
 
+const email =
+document.getElementById("email")
+.value
+.trim()
+.toLowerCase();
+
+const password =
+document.getElementById("password")
+.value
+.trim();
+
 let res =
 await fetch(
 API + "/login",
@@ -323,14 +334,20 @@ headers:{
 "Content-Type":"application/json"
 },
 body:JSON.stringify({
-email:email.value,
-password:password.value
+email,
+password
 })
 }
 );
 
 let data =
 await res.json();
+
+alert(
+JSON.stringify(data)
+);
+
+console.log(data);
 
 if(data.success){
 
@@ -362,9 +379,11 @@ location =
 
 }
 
-}else{
+}
+else{
 
 alert(
+data.message ||
 "Invalid Credentials"
 );
 
