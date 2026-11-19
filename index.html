@@ -177,6 +177,7 @@ font-weight:bold;
 }
 
 .section{
+background-color: #e9ebed;
 max-width:1000px;
 margin:auto;
 padding:20px 20px;
@@ -185,7 +186,7 @@ padding:20px 20px;
 .section h2{
 color:#1d0a8c;
 margin-bottom:25px;
-font-size:25px;
+font-size:25px;;
 }
 
 .grid{
@@ -198,7 +199,7 @@ gap:20px;
 }
 
 .card{
-background:rgb(215, 212, 212);
+background:#e9ebed;
 padding:18px;
 font-size:15px;
 border-radius:15px;
@@ -261,6 +262,10 @@ flex-shrink:0;
 .trust{
 background:#0a4d8c;
 color:white;
+}
+
+.faq{
+background-color:#e9ebed;
 }
 
 .trust h2{
@@ -352,8 +357,171 @@ padding:18px;
 font-size:16px;
 }
 
+.faq-section{
+
+max-width:1100px;
+
+margin:auto;
+
+padding:80px 20px;
+
+background:#05488c;
+
 }
 
+.faq-answer{
+
+display:none;
+
+margin-top:25px;
+
+color:#666;
+
+line-height:1.9;
+
+font-size:16px;
+
+max-width:900px;
+
+}
+
+}
+
+/* ===== Integrated Ecosystem Section ===== */
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:0 20px;
+}
+
+.text-center{
+text-align:center;
+}
+
+.mb-3{
+margin-bottom:15px;
+}
+
+.mb-4{
+margin-bottom:25px;
+}
+
+.mb-5{
+margin-bottom:40px;
+}
+
+.den-main-ban-sec{
+padding:80px 0;
+background: #e9ebed
+}
+
+.den-section-title{
+font-size:40px;
+font-weight:600;
+line-height:1.3;
+color:#0a4d8c;
+max-width:1000px;
+margin:auto;
+}
+
+.den-section-subtext{
+max-width:900px;
+margin:auto;
+font-size:18px;
+line-height:1.8;
+color:black
+}
+
+.row{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+margin-bottom:35px;
+}
+
+.eco-card{
+background:#fff;
+padding:18px;
+border-radius:24px;
+box-shadow:
+0px 10px 30px rgba(0,0,0,.08);
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+transition:.3s;
+}
+
+.eco-card:hover{
+transform:translateY(-5px);
+}
+
+.img-fluid{
+width:100%;
+max-width:180px;
+display:block;
+margin:auto auto 20px auto;
+}
+
+.border-radious{
+border-radius:16px;
+}
+
+.eco-card h3{
+font-size:22px;
+margin-bottom:15px;
+color:#0a4d8c;
+}
+
+.eco-card p{
+font-size:15px;
+line-height:1.8;
+color:#555;
+margin-bottom:20px;
+}
+
+.app-buttons{
+display:inline-block;
+padding:12px 20px;
+background:#0a4d8c;
+color:white;
+text-decoration:none;
+border-radius:30px;
+font-weight:600;
+transition:.3s;
+}
+
+.app-buttons:hover{
+background:#083866;
+}
+
+@media(max-width:768px){
+
+.den-main-ban-sec{
+padding:60px 15px;
+}
+
+.den-section-title{
+font-size:28px;
+}
+
+.den-section-subtext{
+font-size:15px;}
+.row{
+grid-template-columns:1fr;
+}
+
+.eco-card{
+padding:20px;
+}
+
+.eco-card h3{
+font-size:20px;
+}
+
+}
 </style>
 
 <link
@@ -486,7 +654,21 @@ Find a Dentist
 
 </section>
 
-<section class="section">
+<section class="py-5 den-main-ban-sec" data-aos="fade-in">
+   <div class="container">
+      <div class="text-center mb-4" data-aos="fade-up">
+         <h2 class="den-section-title mb-3" data-aos="fade-up" data-aos-delay="100">
+            <span>Teledent Rwanda Integrated Health Ecosystem Now including Home Sleep Testing for Preventive Sleep & Oral Care.</span>
+         </h2>
+         <p class="den-section-subtext mb-5" data-aos="fade-up" data-aos-delay="200">
+            Dentistry has long been reactive fixing problems after they appear.
+             Teledent rwanda brings every piece of oral health together into one connected ecosystem, 
+             shifting care toward prevention, early detection, and continuous wellness.Together, 
+             these layers form a seamless ecosystem connecting patients, providers, 
+            and technology in one intelligent dental network.
+         </p>
+  
+         <section class="section">
 
 <h2>
 Explore TeleDent Rwanda
@@ -494,60 +676,101 @@ Explore TeleDent Rwanda
 
 <div class="grid">
 
-<div class="card">
+  <div class="row justify-content-center g-4 mb-5">
+  <!-- Card 1 -->
+  <div class="col-md-3 col-sm-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+    <div class="eco-card">
+      <div>
+        <img loading="lazy" src="assets/new-source/img/home/top-ban/home-sleep-study.png" class="img-fluid mb-3 border-radious">
+        <h3 class="h5"> Academics and Oral Health</h3>
+        <p>Access oral health education, research resources and community learning materials.
 
-<h3>
-🦷 Products
-</h3>
+        </p>
+      </div>
+      <a href="/academics.html" class="btn app-buttons">
+        Explore academics</a>
+    </div>
+    </div>
+    </div>
 
-<p>
+    <div class="row justify-content-center g-4 mb-5">
+  <!-- Card 1 -->
+  <div class="col-md-3 col-sm-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+    <div class="eco-card">
+      <div>
+        <img loading="lazy" src="assets/new-source/img/home/top-ban/home-sleep-study.png" class="img-fluid mb-3 border-radious">
+        <h3 class="h5">Products</h3>
+        <p> Explore dental care products, oral hygiene recommendations, and future online dental shopping.
 
-Explore dental care products,
-oral hygiene recommendations,
-and future online dental shopping.
+        </p>
+      </div>
+      <a href="/products.html" class="btn app-buttons">
+        Our Products</a>
+    </div>
+    </div>
+    </div>
 
-</p>
+         <div class="row justify-content-center g-4 mb-5">
+            <!-- Example Card -->
+            <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
+               <div class="eco-card">
+                  <img src="assets/new-source/img/home/top-ban/home-sleep-study.png" class="img-fluid mb-3">
+                  <h3 class="h5">Home Sleep Study</h3>
+                  <p>Test sleep apnea at home : wear an FDA-cleared device for one night.
+                     Sleep doctors review it and give you a diagnosis plus treatment plan no clinic needed.</p>
+                  <a href="/home-sleep-study.html" 
+                  class="btn app-buttons">
+                  Learn About Home Sleep Testing</a>
+               </div>
+            </div>
+         </div>
 
-<br>
-
-<a
-href="products.html"
-class="button">
-
-Explore Products
-
-</a>
-
+         <div class="row justify-content-center g-4 mb-5">
+  <!-- Card 1 -->
+  <div class="col-md-3 col-sm-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+    <div class="eco-card">
+      <div>
+        <img loading="lazy" src="assets/new-source/img/home/top-ban/home-sleep-study.png" class="img-fluid mb-3 border-radious">
+        <h3 class="h5">At-Home Tools</h3>
+        <p>From at home intraoral cameras to salivary testing and 
+            scanning we identify problems early and at home</p>
+      </div>
+      <a href="/at-home-tools.html" class="btn app-buttons">
+        Explore our teledentistry Services</a>
+    </div>
+ </div>
 </div>
-
-<div class="card">
-
-<h3>
-🎓 Academics
-</h3>
-
-<p>
-
-Access oral health education,
-research resources and
-community learning materials.
-
-</p>
-
-<br>
-
-<a
-href="academics.html"
-class="button">
-
-Explore Academics
-
-</a>
-
+  <!-- Card 2, 3, 4 follow the same structure -->
+<div class="row justify-content-center g-4 mb-5">
+  <!-- Card 1 -->
+  <div class="col-md-3 col-sm-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+    <div class="eco-card">
+      <div>
+        <img loading="lazy" src="assets/new-source/img/home/top-ban/home-sleep-study.png" class="img-fluid mb-3 border-radious">
+        <h3 class="h5">AI Insights</h3>
+        <p>Leveraged integrated AI tools that help identify cavities, gum disease, and other problems before they get out of hand.</p>
+        </div>
+      <a href="/ai-insights.html" class="btn app-buttons">Explore AI Insights</a>
+    </div>
+  </div>
 </div>
-
+<div class="row justify-content-center g-4 mb-5">
+  <!-- Card 1 -->
+  <div class="col-md-3 col-sm-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+    <div class="eco-card">
+      <div>
+        <img loading="lazy" src="assets/new-source/img/home/top-ban/home-sleep-study.png" class="img-fluid mb-3 border-radious">
+        <h3 class="h5">Virtual Consults</h3>
+        <p>Licensed virtual Teledentists are available on demand and here to help you through any dental issues</p>
+        </div>
+      <a href="/virtual-consults.html" class="btn app-buttons">
+        Learn about Virtual Dental Consultants</a>
+    </div>
+  </div>
+  <!-- Card 2, 3, 4 follow the same structure -->
 </div>
-
+      </div>
+   </div>
 </section>
 
 <section
@@ -558,28 +781,35 @@ class="section">
 About TeleDent Rwanda
 </h2>
 
-<div class="card">
-
-<p style="line-height:1.8;">
-
-TeleDent Rwanda is an innovative tele-dentistry platform
-designed to improve access to oral healthcare across Rwanda.
-Patients can connect with licensed dentists,
-receive professional guidance, upload photos,
-schedule appointments and manage treatment records
-through a secure digital platform.
-
-</p>
-
 </div>
+
+<div class="row justify-content-center g-4 mb-5">
+  <!-- Card 1 -->
+  <div class="col-md-3 col-sm-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+    <div class="eco-card">
+      <div>
+        <img loading="lazy" src="assets/new-source/img/home/top-ban/home-sleep-study.png" class="img-fluid mb-3 border-radious">
+        <h3 class="h5"> About Us</h3>
+      <p> Welcome to Teledent Rwanda - Your Partner in Modern Dental Care.
+Our mission is to revolutionize the dental industry 
+by leveraging technology to enhance the patient experience.
+ Whether you need a routine check-up, have oral health concerns, or seek cosmetic dentistry evaluations,
+  and online consultations. We offer second opinions from trusted dentists, specialist referrals, and
+ even AI-assisted guidance for comprehensive care.
+
+        </p>
+      </div>
+      <a href="/about.html" class="btn app-buttons">
+        Learn More About Us</a>
+    </div>
 
 </section>
 
 <section class="section">
-
-<h2>
+  <h2>
 Why Choose TeleDent Rwanda?
 </h2>
+
 
 <div class="grid">
 
@@ -806,90 +1036,150 @@ Support
 
 </section>
 
-<section
-id="faq"
-class="section">
+<section class="section">
+
+<div class="card"> 
+<div class="section faq">
+<h3>
+
+Have questions?
+
+</h3>
 
 <h2>
-Frequently Asked Questions
+
+Get answers
+
 </h2>
 
-<div class="faq-item">
+<div class="section">
 
-<h3>
-What is TeleDent Rwanda?
-</h3>
+<div class="card">
 
-<p>
-TeleDent Rwanda is a tele-dentistry platform
-connecting patients with licensed dentists.
-</p>
+<span>
 
-</div>
+Does TeleDent Rwanda work with licensed dentists?
 
-<div class="faq-item">
+</span>
 
-<h3>
-How do online consultations work?
-</h3>
+<div class="faq-toggle">
 
-<p>
-Patients upload symptoms and dental photos
-which are reviewed by professional dentists.
-</p>
+−
 
 </div>
 
-<div class="faq-item">
+<div class="faq-answers">
 
-<h3>
-Can I choose a dentist?
-</h3>
+TeleDent Rwanda connects patients with licensed dentists,
+allowing virtual consultations, clinical reviews,
+appointment scheduling and continuous oral healthcare support
+across Rwanda.
 
-<p>
-Yes, patients can view dentist profiles
-and choose approved professionals.
-</p>
+</div>
+</div>
 
 </div>
 
-<div class="faq-item">
+<div class="section">
 
-<h3>
+<div class="card">
+
+<span>
+
+How does TeleDent Rwanda provide dental services?
+
+</span>
+
+<div class="faq-toggle">
+
++
+
+</div>
+
+<div class="faq-answer">
+
+Patients submit symptoms and dental images,
+which are reviewed by qualified dentists before
+recommendations are provided.
+
+</div>
+
+</div>
+
+<div class="section">
+
+<div class="card">
+
+<span>
+
+Can I choose my dentist?
+
+</span>
+
+<div class="faq-toggle">
+
++
+
+</div>
+
+<div class="faq-answer">
+
+Yes. Patients may view available dentists and
+select the professional they prefer.
+
+</div>
+
+</div>
+
+<div class="section">
+
+<div class="card">
+
+<span>
+
 How are payments made?
-</h3>
 
-<p>
-Consultation payments can be completed
-through supported digital payment channels.
-</p>
+</span>
 
-</div>
+<div class="faq-toggle">
 
-<div class="faq-item">
-
-<h3>
-Can dentists register?
-</h3>
-
-<p>
-Yes. Dentists register and are approved
-before joining the public directory.
-</p>
++
 
 </div>
 
-<div class="faq-item">
+<div class="faq-answer">
 
-<h3>
-Does TeleDent Rwanda support education?
-</h3>
+TeleDent supports approved digital payment options
+for consultations and related services.
 
-<p>
-Yes. Academic resources and oral health
-education content are available through
-the Academics section.
-</p>
+</div>
+
+</div>
+
+<div class="section">
+
+<div class="card">
+
+<span>
+
+Are online consultations available?
+
+</span>
+
+<div class="faq-toggle">
+
++
+
+</div>
+
+<div class="faq-answer">
+
+Yes. Patients can receive professional dental guidance
+without visiting a clinic physically.
+
+</div>
+
+</div>
 
 </div>
 
@@ -1061,6 +1351,170 @@ sidebar.classList.toggle(
 };
 
 }
+
+</script>
+
+<script>
+
+document
+.querySelectorAll(
+".faq-question"
+)
+.forEach(item=>{
+
+item.addEventListener(
+"click",
+()=>{
+
+const current =
+item.parentElement;
+
+document
+.querySelectorAll(
+".faq-row"
+)
+.forEach(row=>{
+
+if(
+row !== current
+){
+
+row.classList.remove(
+"active"
+);
+
+row.querySelector(
+".faq-icon"
+).textContent = "+";
+
+}
+
+});
+
+current.classList.toggle(
+"active"
+);
+
+current.querySelector(
+".faq-icon"
+).textContent =
+
+current.classList.contains(
+"active"
+)
+
+?
+
+"−"
+
+:
+
+"+";
+
+});
+
+});
+
+</script>
+<script>
+
+document
+.querySelectorAll(
+".faq-question"
+)
+.forEach(question=>{
+
+question.addEventListener(
+"click",
+()=>{
+
+const current =
+question.parentElement;
+
+document
+.querySelectorAll(
+".faq-row"
+)
+.forEach(row=>{
+
+if(
+row !== current
+){
+
+row.classList.remove(
+"active"
+);
+
+row.querySelector(
+".faq-toggle"
+).textContent = "+";
+
+}
+
+});
+
+current.classList.toggle(
+"active"
+);
+
+current.querySelector(
+".faq-toggle"
+).textContent =
+
+current.classList.contains(
+"active"
+)
+
+?
+
+"−"
+
+:
+
+"+";
+
+});
+
+});
+
+</script>
+<script>
+
+const observer = new IntersectionObserver(
+
+(entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity = "1";
+
+entry.target.style.transform = "translateY(0)";
+
+}
+
+});
+
+},
+
+{
+threshold:0.1
+}
+
+);
+
+document
+.querySelectorAll("[data-aos]")
+.forEach(item=>{
+
+item.style.opacity="0";
+item.style.transform="translateY(30px)";
+item.style.transition="all .7s ease";
+
+observer.observe(item);
+
+});
 
 </script>
 </body>
